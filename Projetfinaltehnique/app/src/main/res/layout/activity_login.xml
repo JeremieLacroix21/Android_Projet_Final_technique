@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundroute"
+    android:scaleType="fitCenter"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/layoutLogo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:contentDescription="@null"
+            android:src="@drawable/panierxpress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Logo"
+            android:layout_marginTop="20dp"
+            android:text="xpress shop"
+            android:textColor="@color/logo"
+            android:gravity="right"
+            android:textSize="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/layoutLogo"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp">
+
+        <EditText android:id="@+id/input_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Nom d'utilisateur" />
+        <EditText android:id="@+id/input_password"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_username"
+            android:inputType="textPassword"
+            android:hint="Mot de passe" />
+        <TextView android:id="@+id/Error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/error"
+            android:layout_below="@+id/ch_rememberme"/>
+        <CheckBox
+            android:layout_marginTop="10dp"
+            android:id="@+id/ch_rememberme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Se souvenir de moi"
+            android:layout_below="@+id/input_password"
+            />
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:layout_below="@+id/Error"
+            android:text="Se connecter"
+            android:onClick="Connection"/>
+
+        <TextView android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Créer votre compte ici"
+            android:layout_below="@+id/btn_signup"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
