@@ -68,22 +68,6 @@ android:scaleType="fitCenter">
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20px"
-        android:textAlignment="center">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20px"
-            android:padding="10px"
-            android:text="modifier le compte" />
-
-
-    </LinearLayout>
-
 
 </LinearLayout>
 

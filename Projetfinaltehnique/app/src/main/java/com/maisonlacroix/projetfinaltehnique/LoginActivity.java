@@ -2,6 +2,7 @@ package com.maisonlacroix.projetfinaltehnique;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -99,8 +100,9 @@ public class LoginActivity extends Activity {
         progressDialog.dismiss();
     }
 
-    public void RedirectToSubscribe(android.view.View view){
-
+    public void RedirectToSubscribe(View view){
+        Intent i = new Intent(this, SubscribeAcitivity.class);
+        startActivity(i);
     }
 
     public boolean validate() {
