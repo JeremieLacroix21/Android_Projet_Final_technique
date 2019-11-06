@@ -58,37 +58,24 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/input_username"
+                    android:id="@+id/input_username_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nom d'utilisateur(nom de l'entreprise)"
                     android:inputType="text" />
 
                 <EditText
-                    android:id="@+id/input_prénom"
+                    android:id="@+id/input_email_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="prénom" />
+                    android:hint="email" />
 
                 <EditText
-                    android:id="@+id/input_nom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="nom de famille"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/input_telephone"
+                    android:id="@+id/input_phone_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="téléphone"
                     android:inputType="phone" />
-
-                <EditText
-                    android:id="@+id/input_adresse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="adresse" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,11 +83,16 @@
                     android:orientation="horizontal" />
 
                 <EditText
-                    android:id="@+id/input_description"
+                    android:id="@+id/input_description_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="description"
                     android:text="" />
+
+                <TextView
+                    android:id="@+id/Textview_error_modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"/>
 
             </LinearLayout>
 
@@ -111,8 +103,10 @@
                 android:textAlignment="center">
 
                 <Button
+                    android:id="@+id/BTN_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="GetUserInfo"
                     android:layout_marginLeft="20px"
                     android:padding="10px"
                     android:text="modifier le compte" />

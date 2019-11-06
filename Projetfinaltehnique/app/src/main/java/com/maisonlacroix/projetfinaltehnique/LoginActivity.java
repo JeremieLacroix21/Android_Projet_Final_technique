@@ -39,7 +39,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginButton = (Button) findViewById(R.id.btn_signup);
-        Username = (EditText) findViewById(R.id.input_username);
+        Username = (EditText) findViewById(R.id.input_username_modifier);
         Password = (EditText) findViewById(R.id.input_adresse);
         ErreurText = (TextView) findViewById(R.id.Error);
         Sesouvenir = (CheckBox) findViewById(R.id.ch_rememberme);

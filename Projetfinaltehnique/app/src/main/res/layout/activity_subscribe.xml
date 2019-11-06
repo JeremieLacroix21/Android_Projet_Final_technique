@@ -59,14 +59,14 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/input_username"
+                    android:id="@+id/input_username_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nom d'utilisateur(nom de l'entreprise)"
                     android:inputType="text" />
 
                 <EditText
-                    android:id="@+id/input_email"
+                    android:id="@+id/input_email_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="email"
@@ -122,7 +122,7 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/input_description"
+                    android:id="@+id/input_description_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="description"

@@ -2,10 +2,7 @@ package com.maisonlacroix.projetfinaltehnique;
 
 import android.app.Activity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,15 +49,15 @@ public class SubscribeAcitivity extends Activity {
         setContentView(R.layout.activity_subscribe);
         subscribeButton = (Button) findViewById(R.id.BTN_Subscribe);
         ReturnToLoginButton = (Button) findViewById(R.id.BTN_ReturnToLogin);
-        Username = (EditText) findViewById(R.id.input_username);
+        Username = (EditText) findViewById(R.id.input_username_modifier);
         Password = (EditText) findViewById(R.id.input_password);
         ConfirmPassword = (EditText) findViewById(R.id.input_confirmpassword);
         nom = (EditText) findViewById(R.id.input_lastname);
         prenom = (EditText) findViewById(R.id.input_firstname);
-        email = (EditText) findViewById(R.id.input_email);
+        email = (EditText) findViewById(R.id.input_email_modifier);
         type = (Spinner) findViewById(R.id.spinner_typeuser);
         telephone = (EditText) findViewById(R.id.input_phone);
-        description = (EditText) findViewById(R.id.input_description);
+        description = (EditText) findViewById(R.id.input_description_modifier);
         adresse = (EditText) findViewById(R.id.input_adress);
         ErreurText_subscribe = (TextView) findViewById(R.id.Textview_error_subscribe);
 
@@ -97,8 +94,7 @@ public class SubscribeAcitivity extends Activity {
             String strDate = mdformat.format(calendar.getTime());
             final String dateinscription = strDate;
             //Connection
-            StringRequest jsonObjRequest = new StringRequest(
-                    Request.Method.POST, url, new Response.Listener<String>() {
+            StringRequest jsonObjRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(SubscribeAcitivity.this,response.toString(),Toast.LENGTH_LONG).show();
@@ -142,7 +138,7 @@ public class SubscribeAcitivity extends Activity {
             };
             queue.add(jsonObjRequest);
         }
-        //RedirectToLoginAfterSubscription();
+        RedirectToLoginAfterSubscription();
     }
 
 
