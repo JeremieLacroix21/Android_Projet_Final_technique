@@ -52,8 +52,9 @@
                 android:textSize="30dp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="315dp"
+                android:layout_width="381dp"
+                android:layout_height="489dp"
+                android:layout_marginLeft="30px"
                 android:layout_marginTop="9dp"
                 android:orientation="vertical">
 
@@ -65,30 +66,39 @@
                     android:inputType="text" />
 
                 <EditText
-                    android:id="@+id/input_prénom"
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="email"
+                    android:inputType="textEmailAddress"
+                    android:text="" />
+
+                <EditText
+                    android:id="@+id/input_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="prénom" />
 
                 <EditText
-                    android:id="@+id/input_nom"
+                    android:id="@+id/input_lastname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="nom de famille"
                     android:inputType="text" />
 
                 <EditText
-                    android:id="@+id/input_telephone"
+                    android:id="@+id/input_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="téléphone"
                     android:inputType="phone" />
 
                 <EditText
-                    android:id="@+id/input_adresse"
+                    android:id="@+id/input_adress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="adresse" />
+                    android:hint="adresse"
+                    android:inputType="textPostalAddress" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,10 +113,11 @@
                         android:textSize="20dp" />
 
                     <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="239dp"
+                        android:id="@+id/spinner_typeuser"
+                        android:layout_width="234dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="0dp" />
+                        android:layout_marginRight="0dp"
+                        android:entries="@array/TypeUserArray" />
 
                 </LinearLayout>
 
@@ -117,6 +128,25 @@
                     android:hint="description"
                     android:text="" />
 
+                <EditText
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="mot de passe"
+                    android:text="" />
+
+                <EditText
+                    android:id="@+id/input_confirmpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="confirmer le mot de passe"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/Textview_error_subscribe"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -126,12 +156,15 @@
                 android:textAlignment="center">
 
                 <Button
+                    android:id="@+id/BTN_Subscribe"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:padding="10px"
-                    android:text="Créer le compte" />
+                    android:text="Créer le compte"
+                    android:onClick="Subscribe"/>
 
                 <Button
+                    android:id="@+id/BTN_ReturnToLogin"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:onClick="RedirectToLogin"

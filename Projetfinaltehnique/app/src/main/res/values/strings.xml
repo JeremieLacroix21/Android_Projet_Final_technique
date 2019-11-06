@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Projetfinal tehnique</string>
+
+    <array name="TypeUserArray">
+        <item>Distributeur</item>
+        <item>Fournisseur</item>
+    </array>
 </resources>
