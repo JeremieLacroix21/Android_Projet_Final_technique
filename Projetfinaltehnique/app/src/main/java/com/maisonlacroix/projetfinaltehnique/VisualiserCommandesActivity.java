@@ -48,40 +48,41 @@ public class VisualiserCommandesActivity extends Activity {
         ErreurText_VisualiserCommande = (TextView) findViewById(R.id.ErreurText_VisualiserCommande);
         Choix = (Spinner) findViewById(R.id.spinner_type_commade);
         Choix.setSelection(0);
+        GetCommandes();
     }
     public void GetCommandes() {
+        StringRequest jsonObjRequest = new StringRequest(
+                Request.Method.POST, urlGetComandes, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-        //Connection
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(POST,  new Response.Listener<JSONObject>()
-        {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("data");
-                            JSONObject jsonInnerObject;
-
-                            for (int k = 0; k < jsonArray.length(); k++) {
-
-                                jsonInnerObject = new JSONObject(jsonArray.get(k).toString());
-
-                                String site = jsonInnerObject.getString("first_name"),
-                                        network = jsonInnerObject.getString("last_name");
-                                System.out.println("firstname: " + site + "\nLastname: " + network);
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
+                try{
+                    JSONObject jsonResponse = new JSONObject(response);
+                    //JSONArray json_array  = jsonResponse.getJSONArray(response);
+                    Toast.makeText(VisualiserCommandesActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
+                        ErreurText_VisualiserCommande.setText(error.toString());
                     }
-                });
-
-        Volley.newRequestQueue(this).add(jsonRequest);
+                }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("idDistributeur", "88");
+                return params;
+            }
+        };
+        queue.add(jsonObjRequest);
 
     }
 
