@@ -36,6 +36,10 @@ import static com.android.volley.Request.Method.POST;
 
 public class VisualiserCommandesActivity extends Activity {
 
+    interface COmmandes{
+        public int 
+    }
+
     private Spinner Choix;
     private String urlGetComandes = "http://3.15.151.13/Laravel/api/GetCommandeDistributeur";
     private RequestQueue queue;
@@ -48,20 +52,20 @@ public class VisualiserCommandesActivity extends Activity {
         ErreurText_VisualiserCommande = (TextView) findViewById(R.id.ErreurText_VisualiserCommande);
         Choix = (Spinner) findViewById(R.id.spinner_type_commade);
         Choix.setSelection(0);
-        GetCommandes();
+
     }
-    public void GetCommandes() {
+    public void GetCommandes(View view) {
         StringRequest jsonObjRequest = new StringRequest(
                 Request.Method.POST, urlGetComandes, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Toast.makeText(VisualiserCommandesActivity.this,response.toString(),Toast.LENGTH_LONG).show();
                 try{
-                    JSONObject jsonResponse = new JSONObject(response);
-                    //JSONArray json_array  = jsonResponse.getJSONArray(response);
-                    Toast.makeText(VisualiserCommandesActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    JSONArray jsonResponse = new JSONArray(response);
+
+
                 }catch (JSONException e) {
-                    e.printStackTrace();
+                    ErreurText_VisualiserCommande.setText(e.getMessage().toString());
                 }
             }
         },

@@ -20,11 +20,13 @@
         </activity>
         <activity android:name=".SubscribeAcitivity">
             <intent-filter>
+                <action android:name="android.intent.action.SUBSCRIBE" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ModifierProfilActivity">
             <intent-filter>
+                <action android:name="android.intent.action.MODIFIER" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,6 +34,7 @@
         </activity>
         <activity android:name=".VisualiserCommandesActivity">
             <intent-filter>
+                <action android:name="android.intent.action.VISUALISER" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
