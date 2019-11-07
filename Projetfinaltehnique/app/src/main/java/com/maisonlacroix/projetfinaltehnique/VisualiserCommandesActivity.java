@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.maisonlacroix.projetfinaltehnique.Classes.Commandes;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,8 @@ public class VisualiserCommandesActivity extends Activity {
     private String urlGetComandes = "http://3.15.151.13/Laravel/api/GetCommandeDistributeur";
     private RequestQueue queue;
     private TextView ErreurText_VisualiserCommande;
+    private Commandes Lescommandes[];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         queue = Volley.newRequestQueue(this);
@@ -60,7 +63,11 @@ public class VisualiserCommandesActivity extends Activity {
                 Toast.makeText(VisualiserCommandesActivity.this,response.toString(),Toast.LENGTH_LONG).show();
                 try{
                     JSONArray jsonResponse = new JSONArray(response);
-
+                    for (int i = 0;i<jsonResponse.length();i++)
+                    {
+                        //Lescommandes[i] = (Commandes) jsonResponse.getJSONArray(i).getJSONObject(i).getJSONObject();
+                        //Toast.makeText(VisualiserCommandesActivity.this,Lescommandes.toString(),Toast.LENGTH_LONG).show();
+                    }
 
                 }catch (JSONException e) {
                     ErreurText_VisualiserCommande.setText(e.getMessage().toString());
