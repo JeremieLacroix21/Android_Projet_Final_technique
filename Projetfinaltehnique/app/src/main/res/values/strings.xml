@@ -5,4 +5,8 @@
         <item>Distributeur</item>
         <item>Fournisseur</item>
     </array>
+    <array name="TypeCommande">
+        <item>Commande en cours</item>
+        <item>Commande complété</item>
+    </array>
 </resources>

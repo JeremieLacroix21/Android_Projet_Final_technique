@@ -98,6 +98,7 @@ public class SubscribeAcitivity extends Activity {
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(SubscribeAcitivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    RedirectToLoginAfterSubscription();
                 }
             },
                     new Response.ErrorListener() {
@@ -138,7 +139,7 @@ public class SubscribeAcitivity extends Activity {
             };
             queue.add(jsonObjRequest);
         }
-        RedirectToLoginAfterSubscription();
+
     }
 
 

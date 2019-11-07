@@ -20,12 +20,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModifierProfilActivity extends Activity {
 
-    private String url = "http://3.15.151.13/Laravel/api/GetUserInformation";
+    private String urlGetinfo = "http://3.15.151.13/Laravel/api/GetUserInformation";
+    private String urlUpdateinfo = "http://3.15.151.13/Laravel/api/UpdateUser";
     private EditText Username;
     private EditText Email;
     private EditText Phone;
@@ -33,6 +37,10 @@ public class ModifierProfilActivity extends Activity {
     private TextView ErreurText_Modifier;
     private Button BTN_modifier;
     private RequestQueue queue;
+    private String username_json;
+    private String Email_json;
+    private String Phone_json;
+    private String Description_json;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         queue = Volley.newRequestQueue(this);
@@ -44,16 +52,60 @@ public class ModifierProfilActivity extends Activity {
         Phone = (EditText) findViewById(R.id.input_phone_modifier);
         Description = (EditText) findViewById(R.id.input_description_modifier);
         ErreurText_Modifier = (TextView) findViewById(R.id.Textview_error_modifier);
+        GetUserInfo();
     }
 
-    public void GetUserInfo(View vue) {
+    public void GetUserInfo() {
 
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
-                    Request.Method.POST, url, new Response.Listener<String>() {
+                    Request.Method.POST, urlGetinfo, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(ModifierProfilActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+
+                    try{
+                        JSONObject jsonResponse = new JSONObject(response);
+                        username_json = jsonResponse.getString("nomutilisateur");
+                        Email_json  = jsonResponse.getString("email");
+                        Phone_json = jsonResponse.getString("Telephone");
+                        Description_json = jsonResponse.getString("description");
+                        Username.setText(username_json);
+                        Email.setText(Email_json);
+                        Phone.setText(username_json);
+                        Description.setText(username_json);
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            ErreurText_Modifier.setText(error.toString());
+                        }
+                    }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("iduser", "11");
+                    return params;
+                }
+            };
+            queue.add(jsonObjRequest);
+        }
+
+        public void ModifierProfil(View view)
+        {
+            //Connection
+            StringRequest jsonObjRequest = new StringRequest(
+                    Request.Method.POST, urlUpdateinfo, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(ModifierProfilActivity.this,"Profile modifié",Toast.LENGTH_LONG).show();
                 }
             },
                     new Response.ErrorListener() {
@@ -71,11 +123,17 @@ public class ModifierProfilActivity extends Activity {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("iduser", "11");
+                    params.put("nomutilisateur", Username.getText().toString());
+                    params.put("email", Email.getText().toString());
+                    params.put("description", Description.getText().toString());
+                    params.put("Telephone", Phone.getText().toString());
                     return params;
                 }
             };
             queue.add(jsonObjRequest);
         }
+
+
 
 
     public void RedirectToSubscribe(View view){

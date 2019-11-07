@@ -106,7 +106,7 @@
                     android:id="@+id/BTN_modifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="GetUserInfo"
+                    android:onClick="ModifierProfil"
                     android:layout_marginLeft="20px"
                     android:padding="10px"
                     android:text="modifier le compte" />
