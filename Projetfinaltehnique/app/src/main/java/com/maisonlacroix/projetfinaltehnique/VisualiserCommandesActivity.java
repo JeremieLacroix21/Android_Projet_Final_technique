@@ -36,9 +36,7 @@ import static com.android.volley.Request.Method.POST;
 
 public class VisualiserCommandesActivity extends Activity {
 
-    interface COmmandes{
-        public int 
-    }
+
 
     private Spinner Choix;
     private String urlGetComandes = "http://3.15.151.13/Laravel/api/GetCommandeDistributeur";
