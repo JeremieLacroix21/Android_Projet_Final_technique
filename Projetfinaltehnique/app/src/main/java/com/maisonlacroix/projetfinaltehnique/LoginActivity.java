@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,9 +20,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
+import com.maisonlacroix.projetfinaltehnique.network.ApiService;
+import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class LoginActivity extends Activity {
 
@@ -33,8 +40,17 @@ public class LoginActivity extends Activity {
     private RequestQueue queue;
     private CheckBox Sesouvenir;
 
+    //service API
+    ApiService service;
+    Call<Access_Token> Token;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -43,6 +59,43 @@ public class LoginActivity extends Activity {
         Password = (EditText) findViewById(R.id.input_adresse);
         ErreurText = (TextView) findViewById(R.id.Error);
         Sesouvenir = (CheckBox) findViewById(R.id.ch_rememberme);
+
+        //sercvice
+        service = RetrofitBuilder.createService(ApiService.class);
+
+    }
+
+    public void LOGIN(View view)
+    {
+        Token = service.login(Username.getText().toString(),Password.getText().toString());
+        //requete de login
+        Token.enqueue(new Callback<Access_Token>() {
+            @Override
+            public void onResponse(Call<Access_Token> call, retrofit2.Response<Access_Token> response) {
+            if(response.isSuccessful())
+            {
+                //todo
+                Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                Log.e("login error : ", response.errorBody().toString());
+
+                if(response.code() == 400)
+                {
+                    Log.e("login error : ", "username invalid");
+                }
+            }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Access_Token> call, Throwable t) {
+                Log.e("login error : ",t.getMessage());
+            }
+        });
+
     }
 
     public void Connection(View vue) {

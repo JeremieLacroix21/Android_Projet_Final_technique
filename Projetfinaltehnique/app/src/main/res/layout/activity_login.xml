@@ -78,7 +78,7 @@
             android:layout_below="@+id/Error"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="24dp"
-            android:onClick="Connection"
+            android:onClick="LOGIN"
             android:padding="12dp"
             android:text="Se connecter" />
 
