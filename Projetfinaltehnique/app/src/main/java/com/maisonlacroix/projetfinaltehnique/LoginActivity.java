@@ -67,6 +67,7 @@ public class LoginActivity extends Activity {
 
     public void LOGIN(View view)
     {
+        final Intent i = new Intent(this, MainActivity.class);
         Token = service.login(Username.getText().toString(),Password.getText().toString());
         //requete de login
         Token.enqueue(new Callback<Access_Token>() {
@@ -76,7 +77,7 @@ public class LoginActivity extends Activity {
             {
                 //todo
                 Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
-
+                startActivity(i);
 
             } else {
                 Log.e("login error : ", response.errorBody().toString());
