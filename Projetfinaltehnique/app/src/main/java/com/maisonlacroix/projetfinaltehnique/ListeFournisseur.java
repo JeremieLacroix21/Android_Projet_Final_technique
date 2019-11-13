@@ -71,28 +71,6 @@ public class ListeFournisseur extends AppCompatActivity {
             public void onResponse(String response) {
                 fournisseurs = new Gson().fromJson(response.toString(), new TypeToken<List<Fournisseur>>(){}.getType());
                 LoadSpinner(fournisseurs);
-
-                //try{
-                    //JSONArray jsonResponse = new JSONArray(response);
-                    //for (int i = 0;i<jsonResponse.length();i++)
-                    //{
-                        //Gson gson = new Gson();
-                       /// Fournisseur object = gson.fromJson(jsonResponse.getJSONObject(i).toString(), Fournisseur.class);
-                        //fournisseurs[i] = object;
-                        //Fournisseur temp = new Fournisseur();
-                        //temp.nom = jsonResponse.getJSONObject(i).getString("nom");
-                       // temp.adresse = jsonResponse.getJSONObject(i).getString("adresse");
-                       // temp.description = jsonResponse.getJSONObject(i).getString("description");
-                       // temp.email = jsonResponse.getJSONObject(i).getString("email");
-                       // temp.iduser = Integer.parseInt(jsonResponse.getJSONObject(i).getString("iduser"));
-                       // temp.nomutilisateur = jsonResponse.getJSONObject(i).getString("nomutilisateur");
-                       // temp.prenom = jsonResponse.getJSONObject(i).getString("prenom");
-                        //temp.Telephone = jsonResponse.getJSONObject(i).getString("Telephone");
-                       // fournisseurs.add(temp);
-                   // }
-                //}catch (JSONException e) {
-                //    Toast.makeText(ListeFournisseur.this,"json string to json array error",Toast.LENGTH_LONG).show();
-               // }
             }
         },
             new Response.ErrorListener() {
