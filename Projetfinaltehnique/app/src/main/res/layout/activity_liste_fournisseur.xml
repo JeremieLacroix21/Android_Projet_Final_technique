@@ -142,4 +142,17 @@
         </LinearLayout>
     </LinearLayout>
 
+<<<<<<< HEAD
+=======
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/homeAsUpIndicator"
+        android:visibility="visible"
+        android:onClick="RedirectToMainMenu"/>
+>>>>>>> c2ee58ec73826ec71072499e59500b19224eb038
 </RelativeLayout>

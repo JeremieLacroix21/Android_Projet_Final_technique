@@ -18,4 +18,39 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListeFournisseur.class);
         startActivity(intent);
     }
+    public void AboutOnClick(View view)
+    {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+    public void ModifierProfilOnClick(View view)
+    {
+        Intent intent = new Intent(this, ModifierProfilActivity.class);
+        startActivity(intent);
+    }
+    public void InventaireOnclick(View view)
+    {
+        Intent intent = new Intent(this, InventaireActivity.class);
+        startActivity(intent);
+    }
+    public void AjouterProduitOnClick(View view)
+    {
+        Intent intent = new Intent(this, AjouterProduitActivity.class);
+        startActivity(intent);
+    }
+    public void VisualiserCommandeOnClick(View view)
+    {
+        Intent intent = new Intent(this, VisualiserCommandesActivity.class);
+        startActivity(intent);
+    }
+
+    public void ListeCompagniesOnClick(View view)
+    {
+        Intent intent = new Intent(this, CompagnieInscriteActivity.class);
+        startActivity(intent);
+    }
+    public void logout(View view)
+    {
+
+    }
 }

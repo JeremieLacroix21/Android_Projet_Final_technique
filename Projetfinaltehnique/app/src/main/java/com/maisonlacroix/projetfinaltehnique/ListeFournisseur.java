@@ -2,6 +2,7 @@ package com.maisonlacroix.projetfinaltehnique;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -160,6 +161,11 @@ public class ListeFournisseur extends AppCompatActivity {
         Toast.makeText(parent.getContext(),
                 "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
                 Toast.LENGTH_SHORT).show();
+    }
+    public void RedirectToMainMenu(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
