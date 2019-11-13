@@ -93,6 +93,7 @@ public class SubscribeAcitivity extends Activity {
             SimpleDateFormat mdformat = new SimpleDateFormat("yyyy-MM-dd ");
             String strDate = mdformat.format(calendar.getTime());
             final String dateinscription = strDate;
+
             //Connection
             StringRequest jsonObjRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
