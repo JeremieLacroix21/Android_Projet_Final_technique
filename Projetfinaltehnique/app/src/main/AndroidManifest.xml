@@ -13,10 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CompagnieInscriteActivity"></activity>
+        <activity android:name=".InventaireActivity" />
+        <activity android:name=".AjouterProduitActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".ListeFournisseur">
             <intent-filter>
-                <action android:name="android.intent.action.LISTERFOURNISSEUR"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.LISTERFOURNISSEUR" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity">
@@ -40,7 +45,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.TEST"></action>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".VisualiserCommandesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VISUALISER" />
