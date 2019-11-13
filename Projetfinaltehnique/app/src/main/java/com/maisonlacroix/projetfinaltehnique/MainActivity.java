@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void classement_joueur_on_click(View view){
+    public void Liste_fournisseur_on_click(View view){
         Intent intent = new Intent(this, ListeFournisseur.class);
         startActivity(intent);
     }

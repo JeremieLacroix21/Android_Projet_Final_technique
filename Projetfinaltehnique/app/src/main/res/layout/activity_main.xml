@@ -30,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Liste Fournisseur" />
+                android:text="Liste Fournisseur"
+                android:onClick="Liste_fournisseur_on_click"/>
         </LinearLayout>
 
         <LinearLayout

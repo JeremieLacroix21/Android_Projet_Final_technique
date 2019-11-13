@@ -55,6 +55,8 @@ public class VisualiserCommandesActivity extends Activity {
         Choix.setSelection(0);
 
     }
+
+
     public void GetCommandes(View view) {
         StringRequest jsonObjRequest = new StringRequest(
                 Request.Method.POST, urlGetComandes, new Response.Listener<String>() {
