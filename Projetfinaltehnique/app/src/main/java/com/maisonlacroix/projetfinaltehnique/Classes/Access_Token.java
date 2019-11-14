@@ -2,8 +2,6 @@ package com.maisonlacroix.projetfinaltehnique.Classes;
 
 import com.squareup.moshi.Json;
 
-import java.util.List;
-
 public class Access_Token {
     @Json(name = "iduser")
     private Integer iduser;
@@ -181,4 +179,7 @@ public class Access_Token {
     }
 
      */
+
+    public static class tags {
+    }
 }
