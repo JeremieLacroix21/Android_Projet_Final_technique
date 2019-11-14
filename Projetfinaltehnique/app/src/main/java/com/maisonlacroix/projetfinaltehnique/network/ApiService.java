@@ -42,6 +42,6 @@ public interface ApiService {
 
     @POST("AddImage")
     @FormUrlEncoded
-    Call<String> AddImage (@Field("nom") String nom);
+    Call<String> AddImage (@Field("Nom") String nom);
 
 }
