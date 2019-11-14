@@ -64,19 +64,12 @@ android:scaleType="fitCenter">
         android:layout_height="wrap_content"
         android:entries="@array/TypeCommande" />
 
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/Liste_commandes"
         android:layout_width="match_parent"
-        android:layout_height="296dp"
-        android:layout_marginTop="9dp"
-        android:orientation="vertical">
+        android:layout_height="312dp" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
-
-
-    </LinearLayout>
     <TextView
         android:id="@+id/ErreurText_VisualiserCommande"
         android:layout_width="match_parent"
@@ -87,7 +80,7 @@ android:scaleType="fitCenter">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:onClick="GetCommandes"
-        android:text="bouton"></Button>
+        android:text="Actualiser"></Button>
 
 
 </LinearLayout>

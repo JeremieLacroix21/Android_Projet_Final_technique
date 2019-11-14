@@ -1,6 +1,7 @@
 package com.maisonlacroix.projetfinaltehnique.network;
 
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
+import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -24,4 +25,23 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Access_Token> login (@Field("name") String name,
                               @Field("password") String password);
+
+    @POST("GetCommandeDistributeur")
+    @FormUrlEncoded
+    Call<Commande[]> GetCommandeDistributeur (@Field("idDistributeur") String idDistributeur);
+
+    @POST("AddProduct")
+    @FormUrlEncoded
+    Call<String> AddProduct (@Field("nom") String nom,
+                             @Field("prix") String prix,
+                             @Field("idFournisseur") String idFournisseur,
+                             @Field("enStock") String enStock,
+                             @Field("imgGUID") String imgGUID,
+                             @Field("description") String description,
+                             @Field("Tags") String[] Tags);
+
+    @POST("AddImage")
+    @FormUrlEncoded
+    Call<String> AddImage (@Field("nom") String nom);
+
 }

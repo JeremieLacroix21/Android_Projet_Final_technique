@@ -47,10 +47,6 @@ public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -73,20 +69,20 @@ public class LoginActivity extends Activity {
         Token.enqueue(new Callback<Access_Token>() {
             @Override
             public void onResponse(Call<Access_Token> call, retrofit2.Response<Access_Token> response) {
-            if(response.isSuccessful())
-            {
-                //todo
-                Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
-                startActivity(i);
-
-            } else {
-                Log.e("login error : ", response.errorBody().toString());
-
-                if(response.code() == 400)
+                if(response.isSuccessful())
                 {
-                    Log.e("login error : ", "username invalid");
+                    //todo
+                    Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
+                    startActivity(i);
+
+                } else {
+                    Log.e("login error : ", response.errorBody().toString());
+
+                    if(response.code() == 400)
+                    {
+                        Log.e("login error : ", "username invalid");
+                    }
                 }
-            }
 
 
             }
@@ -155,7 +151,7 @@ public class LoginActivity extends Activity {
     }
 
     public void RedirectToSubscribe(View view){
-        Intent i = new Intent(this, SubscribeAcitivity.class);
+        Intent i = new Intent(this, SubscribeActivity.class);
         startActivity(i);
     }
 
