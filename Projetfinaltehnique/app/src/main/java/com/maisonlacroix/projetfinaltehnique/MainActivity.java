@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-
     public void Liste_fournisseur_on_click(View view){
         Intent intent = new Intent(this, ListeFournisseur.class);
         startActivity(intent);

@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Calendar;
 
 
-public class SubscribeAcitivity extends Activity {
+public class SubscribeActivity extends Activity {
 
     private String url = "http://3.15.151.13/Laravel/api/register";
     private EditText Username;
@@ -98,7 +98,7 @@ public class SubscribeAcitivity extends Activity {
             StringRequest jsonObjRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(SubscribeAcitivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(SubscribeActivity.this,response.toString(),Toast.LENGTH_LONG).show();
                     RedirectToLoginAfterSubscription();
                 }
             },

@@ -1,49 +1,50 @@
 package com.maisonlacroix.projetfinaltehnique;
 
 import android.app.Activity;
-
-import android.app.Activity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.maisonlacroix.projetfinaltehnique.Classes.Commandes;
+import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
+import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
+import com.maisonlacroix.projetfinaltehnique.network.ApiService;
+import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Calendar;
+import java.util.concurrent.ConcurrentMap;
 
-import static com.android.volley.Request.Method.POST;
+import retrofit2.Call;
+import retrofit2.Callback;
+
 
 public class VisualiserCommandesActivity extends Activity {
 
 
+    //service API
+    ApiService service;
+    Call<Commande[]> Token;
+
+    Map<Integer, String> Liste_Commandes = new HashMap<>();
 
     private Spinner Choix;
     private String urlGetComandes = "http://3.15.151.13/Laravel/api/GetCommandeDistributeur";
     private RequestQueue queue;
+    private ListView TableauDeCommande;
     private TextView ErreurText_VisualiserCommande;
-    private Commandes Lescommandes[];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,48 +54,52 @@ public class VisualiserCommandesActivity extends Activity {
         ErreurText_VisualiserCommande = (TextView) findViewById(R.id.ErreurText_VisualiserCommande);
         Choix = (Spinner) findViewById(R.id.spinner_type_commade);
         Choix.setSelection(0);
-
+        TableauDeCommande = findViewById(R.id.Liste_commandes);
+        service = RetrofitBuilder.createService(ApiService.class);
     }
 
 
     public void GetCommandes(View view) {
-        StringRequest jsonObjRequest = new StringRequest(
-                Request.Method.POST, urlGetComandes, new Response.Listener<String>() {
+        Token = service.GetCommandeDistributeur("88");
+        //requete de login
+        Token.enqueue(new Callback<Commande[]>() {
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(VisualiserCommandesActivity.this,response.toString(),Toast.LENGTH_LONG).show();
-                try{
-                    JSONArray jsonResponse = new JSONArray(response);
-                    for (int i = 0;i<jsonResponse.length();i++)
-                    {
-                        //Lescommandes[i] = (Commandes) jsonResponse.getJSONArray(i).getJSONObject(i).getJSONObject();
-                        //Toast.makeText(VisualiserCommandesActivity.this,Lescommandes.toString(),Toast.LENGTH_LONG).show();
-                    }
+            public void onResponse(Call<Commande[]> call, retrofit2.Response<Commande[]> response) {
+                if(response.isSuccessful())
+                {
+                    //todo
 
-                }catch (JSONException e) {
-                    ErreurText_VisualiserCommande.setText(e.getMessage().toString());
+                    Liste_Commandes.clear();
+                    Liste_Commandes.put(1,
+                            "id                       " +
+                            "dateCreation                     " +
+                            "Fournisseur          ");
+                    for (int i = 0;i<response.body().length;i++)
+                    {
+                        if (response.body()[i].getComplete() == Choix.getSelectedItemPosition())
+                        {
+                            Liste_Commandes.put(response.body()[i].getIdCommande(),response.body()[i].getIdCommande()+ "                   " +  response.body()[i].getDateCreation() + "      " + response.body()[i].getNomFournisseur()+ "      ");
+                        }
+                    }
+                    ArrayList<String> list = new ArrayList<>(Liste_Commandes.values());
+                    ArrayAdapter<String> ArrayAdapter = new ArrayAdapter<String>(VisualiserCommandesActivity.this, android.R.layout.simple_spinner_item, list);
+
+                    TableauDeCommande.setAdapter(ArrayAdapter);
+
+                } else {
+                    Log.e("request error : ", response.errorBody().toString());
+
+                    if(response.code() == 400)
+                    {
+                        Log.e("request error : ", "username invalid");
+                    }
                 }
             }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        ErreurText_VisualiserCommande.setText(error.toString());
-                    }
-                }) {
             @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
+            public void onFailure(Call<Commande[]> call, Throwable t) {
+                Log.e("request error : ",t.getMessage());
             }
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("idDistributeur", "88");
-                return params;
-            }
-        };
-        queue.add(jsonObjRequest);
-
+        });
     }
 
     public void RedirectToMainMenu(View view)
@@ -102,5 +107,4 @@ public class VisualiserCommandesActivity extends Activity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 }
