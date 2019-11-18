@@ -48,7 +48,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="637dp"
+        android:layout_height="595dp"
         android:layout_marginTop="150dp"
         android:orientation="vertical">
 
@@ -108,6 +108,14 @@
             android:onClick="AboutOnClick"
             android:text="About" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="131dp"
+        android:textAlignment="center" />
 
 </RelativeLayout>
 </ScrollView>

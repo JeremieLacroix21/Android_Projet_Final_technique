@@ -8,24 +8,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -36,11 +27,11 @@ public class VisualiserCommandesActivity extends Activity {
     //service API
     ApiService service;
     Call<Commande[]> Token;
+    private String ID_USER;
 
     Map<Integer, String> Liste_Commandes = new HashMap<>();
 
     private Spinner Choix;
-    private String urlGetComandes = "http://3.15.151.13/Laravel/api/GetCommandeDistributeur";
     private RequestQueue queue;
     private ListView TableauDeCommande;
     private TextView ErreurText_VisualiserCommande;
@@ -51,6 +42,9 @@ public class VisualiserCommandesActivity extends Activity {
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualiser_commandes);
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra("key1");
+
         ErreurText_VisualiserCommande = (TextView) findViewById(R.id.ErreurText_VisualiserCommande);
         Choix = (Spinner) findViewById(R.id.spinner_type_commade);
         Choix.setSelection(0);
@@ -105,6 +99,7 @@ public class VisualiserCommandesActivity extends Activity {
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
 }

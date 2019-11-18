@@ -41,7 +41,6 @@ public class AdapterRV extends RecyclerView.Adapter<AdapterRV.ViewHolderRV> {
     public void onBindViewHolder(ViewHolderRV holder, int position) {
         Product currentitem =  productList.get(position);
         holder.mTV_nom.setText(currentitem.getNom());
-
     }
 
     @Override

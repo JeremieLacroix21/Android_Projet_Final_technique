@@ -7,15 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 
 public class CompagnieInscriteActivity extends AppCompatActivity {
-
+    private String ID_USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compagnie_inscrite);
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra("key1");
     }
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
 }

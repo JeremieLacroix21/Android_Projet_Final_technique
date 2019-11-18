@@ -32,10 +32,12 @@ public class AjouterProduitActivity extends Activity {
     //pour les photos :
     private static int RESULT_LOAD_IMAGE = 1;
     private String picturePath;
+
+
     //service API
     ApiService service;
     Call<String> Token;
-    private String UserId = "84";
+    private String ID_USER;
 
     private EditText Nom;
     private EditText description;
@@ -52,7 +54,13 @@ public class AjouterProduitActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ajouter_produit);
+
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra("key1");
+
+
         Nom = findViewById(R.id.input_nom_AjoutProduit);
         description = findViewById(R.id.input_Definition_AjoutProduit);
         prix = findViewById(R.id.input_prix_AjoutProduit);
@@ -79,16 +87,12 @@ public class AjouterProduitActivity extends Activity {
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
     }
-    public void RedirectToMainMenu(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
     public void AjouterProduit(View view)
     {
 
         if(validate()) {
-            Token = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),UserId,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
+            Token = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
             //requete de login
             Token.enqueue(new Callback<String>() {
                 @Override
@@ -165,11 +169,15 @@ public class AjouterProduitActivity extends Activity {
     }
 
     public void pickFromGallery(View view){
-        Intent i = new Intent(
-                Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
+        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, RESULT_LOAD_IMAGE);
+    }
+
+    public void RedirectToMainMenu(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("key1", ID_USER);
+        startActivity(intent);
     }
 
 }
