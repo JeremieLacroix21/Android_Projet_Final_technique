@@ -132,7 +132,6 @@ public class ListeFournisseur extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 //Another interface callback

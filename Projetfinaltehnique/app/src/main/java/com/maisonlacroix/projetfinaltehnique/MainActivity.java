@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra("key1");
-
     }
     public void Liste_fournisseur_on_click(View view){
         Intent intent = new Intent(this, ListeFournisseur.class);

@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,11 +22,9 @@ import com.android.volley.toolbox.Volley;
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 
