@@ -84,7 +84,7 @@ public class LoginActivity extends Activity implements Serializable {
                     }
                     //todo
                     Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
-                    i.putExtra("key1",response.body().getIduser());
+                    i.putExtra("key1",response.body().getIduser().toString());
                     startActivity(i);
                 } else {
                     Log.e("login error : ", response.errorBody().toString());
