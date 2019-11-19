@@ -167,29 +167,25 @@ public class AjouterProduitActivity extends Activity {
         return valid;
     }
 
-<<<<<<< HEAD
-    private void pickFromGallery(){
+
+    private void pickFromGallery() {
         //Create an Intent with action as ACTION_PICK
-        Intent intent=new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK);
         // Sets the type as image/*. This ensures only components of type image are selected
         intent.setType("image/*");
         //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
         String[] mimeTypes = {"image/jpeg", "image/png"};
-        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         // Launching the Intent
         //startActivityForResult(intent,GALLERY_REQUEST_CODE);
-=======
-    public void pickFromGallery(View view){
-        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
     }
+
 
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("key1", ID_USER);
         startActivity(intent);
->>>>>>> 821d55bc005caa02e48f4314dd91a62aef9ffcaa
     }
 
 }
