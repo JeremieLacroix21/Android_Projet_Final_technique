@@ -35,6 +35,8 @@ import java.util.Map;
 
 public class ListeFournisseur extends AppCompatActivity {
 
+    private String ID_USER;
+
     private String url = "http://3.15.151.13/Laravel/api/GetAllSuppliers";
     private RequestQueue queue;
     private ArrayList<Fournisseur> fournisseurs = new ArrayList<Fournisseur>();
@@ -52,6 +54,9 @@ public class ListeFournisseur extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_fournisseur);
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra("key1");
+
         Sp_fournisseur = (Spinner)findViewById(R.id.spinner_fournisseur);
         TV_nom = (TextView)findViewById(R.id.TV_nom);
         TV_etoile = (TextView)findViewById(R.id.TV_etoile);
@@ -127,7 +132,6 @@ public class ListeFournisseur extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 //Another interface callback
@@ -143,6 +147,7 @@ public class ListeFournisseur extends AppCompatActivity {
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
 

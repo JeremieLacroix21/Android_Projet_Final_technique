@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AllProducts extends AppCompatActivity {
-
+    private String ID_USER;
 
     private EditText ET_filter;
     private RecyclerView RV_products;

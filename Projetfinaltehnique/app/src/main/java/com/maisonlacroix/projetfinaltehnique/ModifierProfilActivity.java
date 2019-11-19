@@ -25,6 +25,9 @@ import java.util.Map;
 
 public class ModifierProfilActivity extends Activity {
 
+    private String ID_USER;
+
+
     private String urlGetinfo = "http://3.15.151.13/Laravel/api/GetUserInformation";
     private String urlUpdateinfo = "http://3.15.151.13/Laravel/api/UpdateUser";
     private EditText Username;
@@ -43,6 +46,11 @@ public class ModifierProfilActivity extends Activity {
         queue = Volley.newRequestQueue(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier_profil);
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra("key1");
+
+
+
         BTN_modifier = (Button) findViewById(R.id.BTN_modifier);
         Username = (EditText) findViewById(R.id.input_username_modifier);
         Email = (EditText) findViewById(R.id.input_email_modifier);
@@ -51,7 +59,6 @@ public class ModifierProfilActivity extends Activity {
         ErreurText_Modifier = (TextView) findViewById(R.id.Textview_error_modifier);
         GetUserInfo();
     }
-
     public void GetUserInfo() {
 
             //Connection
@@ -88,15 +95,14 @@ public class ModifierProfilActivity extends Activity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("iduser", "11");
+                    params.put("iduser", ID_USER);
                     return params;
                 }
             };
             queue.add(jsonObjRequest);
         }
 
-        public void ModifierProfil(View view)
-        {
+    public void ModifierProfil(View view) {
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
                     Request.Method.POST, urlUpdateinfo, new Response.Listener<String>() {
@@ -119,7 +125,7 @@ public class ModifierProfilActivity extends Activity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("iduser", "11");
+                    params.put("iduser", ID_USER);
                     params.put("nomutilisateur", Username.getText().toString());
                     params.put("email", Email.getText().toString());
                     params.put("description", Description.getText().toString());
@@ -129,14 +135,6 @@ public class ModifierProfilActivity extends Activity {
             };
             queue.add(jsonObjRequest);
         }
-
-
-
-
-    public void RedirectToSubscribe(View view){
-        Intent i = new Intent(this, SubscribeActivity.class);
-        startActivity(i);
-    }
 
     public boolean validate() {
         boolean valid = true;
@@ -168,9 +166,9 @@ public class ModifierProfilActivity extends Activity {
         return valid;
     }
 
-    public void RedirectToMainMenu(View view)
-    {
+    public void RedirectToMainMenu(View view){
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
 }

@@ -2,10 +2,12 @@ package com.maisonlacroix.projetfinaltehnique.network;
 
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
+import com.maisonlacroix.projetfinaltehnique.Classes.User;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -42,6 +44,9 @@ public interface ApiService {
 
     @POST("AddImage")
     @FormUrlEncoded
-    Call<String> AddImage (@Field("nom") String nom);
+    Call<String> AddImage (@Field("Nom") String nom);
+
+    @GET("GetAllUsers")
+    Call<User> GetAllUsers ();
 
 }

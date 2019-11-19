@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,14 +22,13 @@ import com.android.volley.toolbox.Volley;
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
-
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements Serializable {
 
     private String url = "http://3.15.151.13/Laravel/api/login";
     private EditText Username;
@@ -39,6 +37,10 @@ public class LoginActivity extends Activity {
     private Button loginButton;
     private RequestQueue queue;
     private CheckBox Sesouvenir;
+
+
+
+    //for the login logic
 
     //service API
     ApiService service;
@@ -65,16 +67,25 @@ public class LoginActivity extends Activity {
     {
         final Intent i = new Intent(this, MainActivity.class);
         Token = service.login(Username.getText().toString(),Password.getText().toString());
+
         //requete de login
         Token.enqueue(new Callback<Access_Token>() {
             @Override
             public void onResponse(Call<Access_Token> call, retrofit2.Response<Access_Token> response) {
                 if(response.isSuccessful())
                 {
+                    if(Sesouvenir.isChecked())
+                    {
+                        //Se souvenir de moi
+                        SharedPreferences reglages = getPreferences(0);
+                        SharedPreferences.Editor editeur = reglages.edit();
+                        editeur.putString("user_id", response.errorBody().toString());
+                        editeur.commit();
+                    }
                     //todo
                     Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
+                    i.putExtra("key1",response.body().getIduser());
                     startActivity(i);
-
                 } else {
                     Log.e("login error : ", response.errorBody().toString());
 
@@ -83,10 +94,7 @@ public class LoginActivity extends Activity {
                         Log.e("login error : ", "username invalid");
                     }
                 }
-
-
             }
-
             @Override
             public void onFailure(Call<Access_Token> call, Throwable t) {
                 Log.e("login error : ",t.getMessage());
@@ -104,6 +112,7 @@ public class LoginActivity extends Activity {
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Connection...");
             progressDialog.show();
+
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
                     Request.Method.POST, url, new Response.Listener<String>() {
@@ -148,11 +157,6 @@ public class LoginActivity extends Activity {
             queue.add(jsonObjRequest);
         }
         progressDialog.dismiss();
-    }
-
-    public void RedirectToSubscribe(View view){
-        Intent i = new Intent(this, SubscribeActivity.class);
-        startActivity(i);
     }
 
     public boolean validate() {

@@ -27,6 +27,8 @@ import java.util.Calendar;
 
 public class SubscribeActivity extends Activity {
 
+    private String ID_USER;
+
     private String url = "http://3.15.151.13/Laravel/api/register";
     private EditText Username;
     private EditText Password;

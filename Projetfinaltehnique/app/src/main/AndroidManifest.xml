@@ -17,7 +17,12 @@
         <activity android:name=".CompagnieInscriteActivity" />
         <activity android:name=".InventaireActivity" />
         <activity android:name=".AjouterProduitActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".AboutActivity" >
+            <intent-filter>
+
+                <action android:name="android.intent.action.ABOUT"></action>
+            </intent-filter>
+        </activity>
         <activity android:name=".ListeFournisseur">
             <intent-filter>
                 <action android:name="android.intent.action.LISTERFOURNISSEUR" />
