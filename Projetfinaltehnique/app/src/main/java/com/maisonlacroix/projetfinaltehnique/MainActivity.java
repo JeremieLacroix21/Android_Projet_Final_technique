@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void AboutOnClick(View view)
     {
-        Intent intent = new Intent(this, AllProducts.class);
+        Intent intent = new Intent(this, AboutActivity.class);
         intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
