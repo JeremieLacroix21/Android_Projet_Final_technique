@@ -90,7 +90,6 @@ public class AjouterProduitActivity extends Activity {
 
     public void AjouterProduit(View view)
     {
-
         if(validate()) {
             Token = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
             //requete de login
