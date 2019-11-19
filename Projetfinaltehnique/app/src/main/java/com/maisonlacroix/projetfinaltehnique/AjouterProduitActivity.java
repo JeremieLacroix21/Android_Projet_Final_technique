@@ -187,5 +187,4 @@ public class AjouterProduitActivity extends Activity {
         intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
-
 }
