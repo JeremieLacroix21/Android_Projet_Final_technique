@@ -145,6 +145,6 @@ public class AjouterProduitActivity extends AppCompatActivity {
         String[] mimeTypes = {"image/jpeg", "image/png"};
         intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
         // Launching the Intent
-        startActivityForResult(intent,GALLERY_REQUEST_CODE);
+        //startActivityForResult(intent,GALLERY_REQUEST_CODE);
     }
 }

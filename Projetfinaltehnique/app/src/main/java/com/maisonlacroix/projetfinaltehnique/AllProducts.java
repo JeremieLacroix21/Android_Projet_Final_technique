@@ -60,18 +60,20 @@ public class AllProducts extends AppCompatActivity {
     }
 
     public void GetProducts() {
+        //final ArrayList<Product> Products1 = new ArrayList<Product>();
         StringRequest jsonObjRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
         {
+            ArrayList<Product> Products1 = new ArrayList<Product>();
             @Override
             public void onResponse(String response) {
-                ArrayList<Product> Products1;
+
                 Products1 = new Gson().fromJson(response.toString(), new TypeToken<List<Product>>(){}.getType());
-                Products = Products1;
 
 
 
                 //SetRecyclerView(Products);
             }
+
         },
                 new Response.ErrorListener() {
                     @Override
@@ -90,6 +92,7 @@ public class AllProducts extends AppCompatActivity {
                 return params;
             }
         };
+
         queue.add(jsonObjRequest);
     }
 
