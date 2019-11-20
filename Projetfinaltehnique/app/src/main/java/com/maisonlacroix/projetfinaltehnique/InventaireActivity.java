@@ -69,7 +69,7 @@ public class InventaireActivity extends AppCompatActivity {
                     for (int i = 1;i<response.body().length;i++)
                     {
                         Liste_inventaire_nom.add(response.body()[i].getNom());
-                        Liste_inventaire_prix.add(response.body()[i].getPrix().toString());
+                        Liste_inventaire_prix.add(response.body()[i].getPrix().toString() + "$");
                         Liste_inventaire_qte.add(response.body()[i].getEnStock().toString());
                         Liste_inventaire_desc.add(response.body()[i].getDescription());
                     }
