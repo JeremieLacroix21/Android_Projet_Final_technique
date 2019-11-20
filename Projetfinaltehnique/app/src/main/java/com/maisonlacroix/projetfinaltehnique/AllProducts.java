@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ public class AllProducts extends AppCompatActivity {
     private EditText ET_filter;
     private RecyclerView RV_products;
     private RecyclerView.LayoutManager  rvLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private AdapterRV mAdapter;
 
     private String url = "http://3.15.151.13/Laravel/api/GetAllProducts";
     public ArrayList<Product> Products = new ArrayList<Product>();
@@ -42,7 +44,23 @@ public class AllProducts extends AppCompatActivity {
         setContentView(R.layout.activity_all_products);
         queue = Volley.newRequestQueue(this);
         GetProducts();
+        ET_filter = (EditText)findViewById(R.id.ET_Filter);
+        ET_filter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
 
     }
@@ -79,11 +97,24 @@ public class AllProducts extends AppCompatActivity {
     }
 
     void SetRecyclerView(ArrayList<Product> p){
+        Products = p;
         RV_products = (RecyclerView)findViewById((R.id.RV_products));
         RV_products.setHasFixedSize(true);
         rvLayoutManager = new LinearLayoutManager(AllProducts.this);
         mAdapter = new AdapterRV(p);
         RV_products.setLayoutManager(rvLayoutManager);
         RV_products.setAdapter(mAdapter);
+    }
+
+    private void filter(String text) {
+        ArrayList<Product> filteredList = new ArrayList<>();
+
+        for (Product item : Products) {
+            if (item.getNom().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+
+        mAdapter.filterList(filteredList);
     }
 }

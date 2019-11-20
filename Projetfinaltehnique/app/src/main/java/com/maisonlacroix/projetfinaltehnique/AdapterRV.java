@@ -56,4 +56,9 @@ public class AdapterRV extends RecyclerView.Adapter<AdapterRV.ViewHolderRV> {
     public int getItemCount() {
         return productList.size();
     }
+
+    public void filterList(ArrayList<Product> filteredList) {
+        productList = filteredList;
+        notifyDataSetChanged();
+    }
 }
