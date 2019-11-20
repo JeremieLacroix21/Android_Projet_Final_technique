@@ -34,7 +34,7 @@
 
                     <ImageView
                         android:id="@+id/imageView7"
-                        android:layout_width="108dp"
+                        android:layout_width="109dp"
                         android:layout_height="59dp"
                         android:background="@drawable/panierxpress" />
 
