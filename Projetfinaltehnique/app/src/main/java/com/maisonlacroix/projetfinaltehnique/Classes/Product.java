@@ -2,7 +2,7 @@ package com.maisonlacroix.projetfinaltehnique.Classes;
 
 public class Product {
     public int idproduits;
-    public float prix;
+    public int prix;
     public int idFournisseur;
     public String nomFournisseur;
     public int enStock;

@@ -101,6 +101,13 @@
             android:text="Liste des Compagnies" />
 
         <Button
+            android:id="@+id/BTN_produits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Produits"
+            android:onClick="ProduitsOnClick"/>
+
+        <Button
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
