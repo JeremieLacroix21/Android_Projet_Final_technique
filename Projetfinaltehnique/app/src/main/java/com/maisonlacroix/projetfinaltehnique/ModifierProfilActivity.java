@@ -75,8 +75,8 @@ public class ModifierProfilActivity extends Activity {
                         Description_json = jsonResponse.getString("description");
                         Username.setText(username_json);
                         Email.setText(Email_json);
-                        Phone.setText(username_json);
-                        Description.setText(username_json);
+                        Phone.setText(Phone_json);
+                        Description.setText(Description_json);
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }

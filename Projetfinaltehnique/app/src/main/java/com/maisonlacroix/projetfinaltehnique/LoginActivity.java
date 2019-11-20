@@ -61,6 +61,15 @@ public class LoginActivity extends Activity implements Serializable {
         //sercvice
         service = RetrofitBuilder.createService(ApiService.class);
 
+        //Se souvenir de moi
+       /* SharedPreferences reglages = getPreferences(0);
+        if ()
+        SharedPreferences reglages = getPreferences(0);
+        SharedPreferences.Editor editeur = reglages.edit();
+        editeur.putString("user_id", response.errorBody().toString());
+        editeur.commit();*/
+
+
     }
 
     public void LOGIN(View view)
@@ -79,7 +88,8 @@ public class LoginActivity extends Activity implements Serializable {
                         //Se souvenir de moi
                         SharedPreferences reglages = getPreferences(0);
                         SharedPreferences.Editor editeur = reglages.edit();
-                        editeur.putString("user_id", response.errorBody().toString());
+                        editeur.putString("user_name", response.body().getNomutilisateur());
+                        editeur.putString("password",Password.getText().toString());
                         editeur.commit();
                     }
                     //todo
