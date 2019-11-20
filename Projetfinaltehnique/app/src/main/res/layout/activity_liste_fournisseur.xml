@@ -40,7 +40,7 @@
                         android:id="@+id/textLogo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="expressShop"
+                        android:text="xpressShop"
                         android:textColor="@color/logo"
                         android:textSize="30sp" />
                 </LinearLayout>

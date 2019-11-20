@@ -34,9 +34,9 @@
 
                     <ImageView
                         android:id="@+id/imageView7"
-                        android:layout_width="109dp"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/panierxpress" />
+                        android:layout_width="108dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/panierxpress" />
 
                     <TextView
                         android:id="@+id/textView9"
