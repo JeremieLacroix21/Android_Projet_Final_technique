@@ -42,8 +42,8 @@ public class CompagnieInscriteActivity extends AppCompatActivity {
         ID_USER = intent.getStringExtra("key1");
         //sercvice
         service = RetrofitBuilder.createService(ApiService.class);
-        Liste_nom = (ListView) findViewById(R.id.Liste_qty);
-        Liste_email = (ListView) findViewById(R.id.Liste_description);
+        Liste_nom = (ListView) findViewById(R.id.Liste_nom);
+        Liste_email = (ListView) findViewById(R.id.Liste_description_inventaire);
         Liste_type = (ListView) findViewById(R.id.Liste_type);
         GetAllUsers();
     }

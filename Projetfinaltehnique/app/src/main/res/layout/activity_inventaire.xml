@@ -52,10 +52,14 @@
         <TextView
             android:id="@+id/text_subscribe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             android:gravity="bottom"
+            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
             android:text="Votre Inventaire"
             android:textAlignment="center"
             android:textSize="30dp" />
@@ -66,28 +70,26 @@
             android:orientation="horizontal">
 
             <ListView
-                android:id="@+id/Liste_nom"
+                android:id="@+id/Liste_nom_inventaire"
                 android:layout_width="101dp"
                 android:layout_height="match_parent" />
 
             <ListView
-                android:id="@+id/Liste_prix"
+                android:id="@+id/Liste_prix_inventaire"
                 android:layout_width="61dp"
                 android:layout_height="match_parent">
 
             </ListView>
 
             <ListView
-                android:id="@+id/Liste_qty"
-                android:layout_width="107dp"
+                android:id="@+id/Liste_qty_inventaire"
+                android:layout_width="74dp"
                 android:layout_height="match_parent" />
 
             <ListView
-                android:id="@+id/Liste_description"
-                android:layout_width="137dp"
-                android:layout_height="match_parent">
-
-            </ListView>
+                android:id="@+id/Liste_description_inventaire"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
     </LinearLayout>

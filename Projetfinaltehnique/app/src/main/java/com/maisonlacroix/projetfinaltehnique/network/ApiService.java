@@ -2,6 +2,7 @@ package com.maisonlacroix.projetfinaltehnique.network;
 
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
+import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
 
 import retrofit2.Call;
@@ -48,5 +49,10 @@ public interface ApiService {
 
     @GET("GetAllUsers")
     Call<User[]> GetAllUsers();
+
+    @POST("GetProductsByFournisseur")
+    @FormUrlEncoded
+    Call<ProduitInventaire[]> GetProductsByFournisseur(@Field("id") String id);
+
 
 }

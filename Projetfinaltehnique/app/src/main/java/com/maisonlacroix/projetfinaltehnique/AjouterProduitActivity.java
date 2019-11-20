@@ -67,6 +67,8 @@ public class AjouterProduitActivity extends Activity {
         quantite = findViewById(R.id.input_quantité_AjoutProduit);
         tags = findViewById(R.id.input_tags_AjoutProduit);
         Textview_error_AjoutProduit = findViewById(R.id.Textview_error_AjoutProduit);
+
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -84,6 +86,8 @@ public class AjouterProduitActivity extends Activity {
             picturePath = cursor.getString(columnIndex);
             cursor.close();
             ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
+            imageView.setImageResource(R.drawable.mathieu);
+
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
     }
@@ -168,7 +172,7 @@ public class AjouterProduitActivity extends Activity {
     }
 
 
-    private void pickFromGallery() {
+    public void pickFromGallery(View view) {
         //Create an Intent with action as ACTION_PICK
         Intent intent = new Intent(Intent.ACTION_PICK);
         // Sets the type as image/*. This ensures only components of type image are selected
@@ -177,7 +181,7 @@ public class AjouterProduitActivity extends Activity {
         String[] mimeTypes = {"image/jpeg", "image/png"};
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         // Launching the Intent
-        //startActivityForResult(intent,GALLERY_REQUEST_CODE);
+        startActivityForResult(intent,RESULT_LOAD_IMAGE);
     }
 
 

@@ -68,12 +68,12 @@
             android:orientation="horizontal">
 
             <ListView
-                android:id="@+id/Liste_qty"
+                android:id="@+id/Liste_nom"
                 android:layout_width="113dp"
                 android:layout_height="match_parent" />
 
             <ListView
-                android:id="@+id/Liste_description"
+                android:id="@+id/Liste_email"
                 android:layout_width="204dp"
                 android:layout_height="match_parent">
 
