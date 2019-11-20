@@ -54,7 +54,7 @@ public class InventaireActivity extends AppCompatActivity {
 
     private void GetAllItems()
     {
-        Token = service.GetProductsByFournisseur("84");
+        Token = service.GetProductsByFournisseur(ID_USER);
 
         //requete de login
         Token.enqueue(new Callback<ProduitInventaire[]>() {

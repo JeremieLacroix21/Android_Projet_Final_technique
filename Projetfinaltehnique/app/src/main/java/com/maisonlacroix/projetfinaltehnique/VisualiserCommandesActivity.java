@@ -17,6 +17,7 @@ import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +35,14 @@ public class VisualiserCommandesActivity extends Activity {
 
     private Spinner Choix;
     private RequestQueue queue;
-    private ListView TableauDeCommande;
+    private ListView liste_id;
+    private ListView liste_datecreation;
+    private ListView liste_fournisseur;
+
+    private List<String> Liste_id  = new ArrayList<>();
+    private List<String> Liste_datecreation  = new ArrayList<>();
+    private List<String> Liste_Fournisseurs  = new ArrayList<>();
+
     private TextView ErreurText_VisualiserCommande;
 
 
@@ -49,7 +57,11 @@ public class VisualiserCommandesActivity extends Activity {
         ErreurText_VisualiserCommande = (TextView) findViewById(R.id.ErreurText_VisualiserCommande);
         Choix = (Spinner) findViewById(R.id.spinner_type_commade);
         Choix.setSelection(0);
-        TableauDeCommande = findViewById(R.id.Liste_commandes);
+        liste_id = findViewById(R.id.Liste_id_commande);
+        liste_datecreation = findViewById(R.id.Liste_dateCreation_commandes);
+        liste_fournisseur = findViewById(R.id.Liste_Fournisseur_commandes);
+
+
         service = RetrofitBuilder.createService(ApiService.class);
 
 
@@ -78,23 +90,32 @@ public class VisualiserCommandesActivity extends Activity {
                 if(response.isSuccessful())
                 {
                     //todo
+                    Liste_id.clear();
+                    Liste_datecreation.clear();
+                    Liste_Fournisseurs.clear();
+                    Liste_id.add("id");
+                    Liste_datecreation.add("date création");
+                    Liste_Fournisseurs.add("Fournisseur");
 
-                    Liste_Commandes.clear();
-                    Liste_Commandes.put(1,
-                            "id                       " +
-                            "dateCreation                     " +
-                            "Fournisseur          ");
                     for (int i = 0;i<response.body().length;i++)
                     {
                         if (response.body()[i].getComplete() == Choix.getSelectedItemPosition())
                         {
-                            Liste_Commandes.put(response.body()[i].getIdCommande(),response.body()[i].getIdCommande()+ "                   " +  response.body()[i].getDateCreation() + "      " + response.body()[i].getNomFournisseur()+ "      ");
+                            Liste_id.add(response.body()[i].getIdCommande().toString());
+                            Liste_datecreation.add(response.body()[i].getDateCreation());
+                            Liste_Fournisseurs.add(response.body()[i].getNomFournisseur());
                         }
                     }
-                    ArrayList<String> list = new ArrayList<>(Liste_Commandes.values());
-                    ArrayAdapter<String> ArrayAdapter = new ArrayAdapter<String>(VisualiserCommandesActivity.this, android.R.layout.simple_spinner_item, list);
+                    ArrayList<String> list1 = new ArrayList<>(Liste_id);
+                    ArrayList<String> list2 = new ArrayList<>(Liste_datecreation);
+                    ArrayList<String> list3 = new ArrayList<>(Liste_Fournisseurs);
+                    ArrayAdapter<String> ArrayAdapter1 = new ArrayAdapter<String>(VisualiserCommandesActivity.this, android.R.layout.simple_spinner_item, list1);
+                    ArrayAdapter<String> ArrayAdapter2 = new ArrayAdapter<String>(VisualiserCommandesActivity.this, android.R.layout.simple_spinner_item, list2);
+                    ArrayAdapter<String> ArrayAdapter3 = new ArrayAdapter<String>(VisualiserCommandesActivity.this, android.R.layout.simple_spinner_item, list3);
 
-                    TableauDeCommande.setAdapter(ArrayAdapter);
+                    liste_id.setAdapter(ArrayAdapter1);
+                    liste_datecreation.setAdapter(ArrayAdapter2);
+                    liste_fournisseur.setAdapter(ArrayAdapter3);
 
                 } else {
                     Log.e("request error : ", response.errorBody().toString());

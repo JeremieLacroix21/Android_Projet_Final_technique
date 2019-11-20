@@ -83,6 +83,29 @@ public class AjouterProduitActivity extends Activity {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        }
+
+
+    }
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
             cursor.close();
             ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
@@ -90,7 +113,8 @@ public class AjouterProduitActivity extends Activity {
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
-    }
+    }*/
+
 
     public void AjouterProduit(View view)
     {
@@ -173,7 +197,12 @@ public class AjouterProduitActivity extends Activity {
 
 
     public void pickFromGallery(View view) {
-        //Create an Intent with action as ACTION_PICK
+
+
+
+        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, RESULT_LOAD_IMAGE);
+        /*//Create an Intent with action as ACTION_PICK
         Intent intent = new Intent(Intent.ACTION_PICK);
         // Sets the type as image/*. This ensures only components of type image are selected
         intent.setType("image/*");
@@ -181,7 +210,7 @@ public class AjouterProduitActivity extends Activity {
         String[] mimeTypes = {"image/jpeg", "image/png"};
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         // Launching the Intent
-        startActivityForResult(intent,RESULT_LOAD_IMAGE);
+        startActivityForResult(intent,RESULT_LOAD_IMAGE);*/
     }
 
 

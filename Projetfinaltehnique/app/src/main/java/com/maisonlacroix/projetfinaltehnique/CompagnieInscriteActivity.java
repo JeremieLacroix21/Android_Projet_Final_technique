@@ -43,7 +43,7 @@ public class CompagnieInscriteActivity extends AppCompatActivity {
         //sercvice
         service = RetrofitBuilder.createService(ApiService.class);
         Liste_nom = (ListView) findViewById(R.id.Liste_nom);
-        Liste_email = (ListView) findViewById(R.id.Liste_description_inventaire);
+        Liste_email = (ListView) findViewById(R.id.Liste_email);
         Liste_type = (ListView) findViewById(R.id.Liste_type);
         GetAllUsers();
     }
