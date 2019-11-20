@@ -68,6 +68,7 @@ public class LoginActivity extends Activity implements Serializable {
         //Se souvenir de moi
         if ( name != "No name defined")
         {
+            Sesouvenir.setChecked(true);
             Username.setText(name);
             Password.setText(pass);
         }
@@ -84,15 +85,17 @@ public class LoginActivity extends Activity implements Serializable {
             public void onResponse(Call<Access_Token> call, retrofit2.Response<Access_Token> response) {
                 if(response.isSuccessful())
                 {
+                    final String MY_PREFS_NAME = "MyPrefsFile";
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                     if(Sesouvenir.isChecked())
                     {
-                        //Se souvenir de moi
-                        service = RetrofitBuilder.createService(ApiService.class);
-                        final String MY_PREFS_NAME = "MyPrefsFile";
-                        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                         editor.putString("user_name", response.body().getNomutilisateur());
                         editor.putString("password",Password.getText().toString());
                         editor.apply();
+                    }
+                    else
+                    {
+                        editor.clear();
                     }
                     //todo
                     Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
