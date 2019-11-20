@@ -34,7 +34,7 @@ public interface ApiService {
 
     @POST("AddProduct")
     @FormUrlEncoded
-    Call<String> AddProduct (@Field("nom") String nom,
+    Call<String> AddProduct( @Field("nom") String nom,
                              @Field("prix") String prix,
                              @Field("idFournisseur") String idFournisseur,
                              @Field("enStock") String enStock,
@@ -44,9 +44,9 @@ public interface ApiService {
 
     @POST("AddImage")
     @FormUrlEncoded
-    Call<String> AddImage (@Field("Nom") String nom);
+    Call<String> AddImage( @Field("Nom") String nom);
 
     @GET("GetAllUsers")
-    Call<User> GetAllUsers ();
+    Call<User[]> GetAllUsers();
 
 }

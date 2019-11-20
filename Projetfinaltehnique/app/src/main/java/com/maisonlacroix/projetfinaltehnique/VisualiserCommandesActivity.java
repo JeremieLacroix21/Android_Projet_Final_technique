@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -50,11 +51,26 @@ public class VisualiserCommandesActivity extends Activity {
         Choix.setSelection(0);
         TableauDeCommande = findViewById(R.id.Liste_commandes);
         service = RetrofitBuilder.createService(ApiService.class);
+
+
+
+        Choix.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                GetCommandes();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
 
 
-    public void GetCommandes(View view) {
-        Token = service.GetCommandeDistributeur("88");
+    public void GetCommandes() {
+        Token = service.GetCommandeDistributeur(ID_USER);
         //requete de login
         Token.enqueue(new Callback<Commande[]>() {
             @Override

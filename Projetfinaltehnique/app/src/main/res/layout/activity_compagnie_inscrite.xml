@@ -62,5 +62,28 @@
             android:textAlignment="center"
             android:textSize="30dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="442dp"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/Liste_qty"
+                android:layout_width="113dp"
+                android:layout_height="match_parent" />
+
+            <ListView
+                android:id="@+id/Liste_description"
+                android:layout_width="204dp"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+            <ListView
+                android:id="@+id/Liste_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
