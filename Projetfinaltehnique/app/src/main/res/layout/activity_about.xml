@@ -82,7 +82,7 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
-                android:layout_height="376dp"
+                android:layout_height="wrap_content"
                 android:text="L'application mobile permet au distributeurs de se connecter avec son compte et de consulter ces commandes. Celle-ci permet aussi de recevoir des notifications de la messagerie instantané et de communiquer avec ces clients. Ils peuvent aussi soumettre une inscription par l’application mobile et explorer les produits offerts par les fournisseurs. Il pourra tout comme sur le site web compléter des commandes."
                 android:textAlignment="center"
                 android:textSize="24sp" />
@@ -99,73 +99,94 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="334dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="211dp"
-                    android:layout_height="330dp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="match_parent"
                         android:layout_height="138dp"
+                        android:layout_weight="1"
                         android:src="@drawable/charles"
                         tools:srcCompat="@drawable/charles" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Charles Bourgeois"
-                        android:textAlignment="center" />
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="match_parent"
                         android:layout_height="138dp"
+                        android:layout_weight="1"
                         android:src="@drawable/mathieu"
                         tools:srcCompat="@drawable/mathieu" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Charles Bourgeois"
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textView14"
                         android:layout_width="match_parent"
-                        android:layout_height="23dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Mathieu Sévigny"
                         android:textAlignment="center" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="211dp"
-                    android:layout_height="330dp"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="211dp"
+                        android:layout_width="match_parent"
                         android:layout_height="138dp"
-                        tools:srcCompat="@drawable/capture" />
+                        android:layout_weight="1"
+                        android:src="@drawable/capture" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/gab" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:src="@drawable/je"
                         android:text="Jérémie Lacroix"
                         android:textAlignment="center" />
 
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="138dp"
-                        android:src="@drawable/gab"
-                        tools:srcCompat="@drawable/gab" />
-
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="match_parent"
-                        android:layout_height="23dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Gabriel Fournier"
                         android:textAlignment="center" />
                 </LinearLayout>
