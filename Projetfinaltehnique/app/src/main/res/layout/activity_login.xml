@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
@@ -8,94 +9,118 @@
     android:scaleType="fitCenter"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/layoutLogo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/Logo"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:contentDescription="@null"
-            android:src="@drawable/panierxpress" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/Logo"
-            android:layout_marginTop="20dp"
-            android:text="xpress shop"
-            android:textColor="@color/logo"
-            android:gravity="right"
-            android:textSize="30dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/layoutLogo"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp">
-
-        <EditText android:id="@+id/input_username_modifier"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Nom d'utilisateur" />
-        <EditText android:id="@+id/input_adresse"
-            android:layout_marginTop="25dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="109dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/panierxpress" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xpressShop"
+                        android:textSize="30sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/input_username_modifier"
-            android:inputType="textPassword"
-            android:hint="Mot de passe" />
-        <TextView android:id="@+id/Error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/error"
-            android:layout_below="@+id/ch_rememberme"/>
-        <CheckBox
-            android:layout_marginTop="10dp"
-            android:id="@+id/ch_rememberme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Se souvenir de moi"
-            android:layout_below="@+id/input_adresse"
-            />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Error"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="24dp"
-            android:onClick="LOGIN"
-            android:padding="12dp"
-            android:text="Se connecter" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="50dp">
 
-        <Button
-            android:layout_marginTop="2dp"
-            android:padding="12dp"
-            android:onClick="RedirectToSubscribe"
-            android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Créer un compte"
-            android:layout_below="@+id/btn_signup"
-            android:gravity="center"
-            android:textSize="16dip"/>
+                <EditText
+                    android:id="@+id/input_username_modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nom d'utilisateur"
+                    android:inputType="text" />
 
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/input_adresse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input_username_modifier"
+                    android:layout_marginTop="25dp"
+                    android:hint="Mot de passe"
+                    android:inputType="textPassword" />
+
+                <TextView
+                    android:id="@+id/Error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ch_rememberme"
+                    android:gravity="center"
+                    android:textColor="@color/error" />
+
+                <CheckBox
+                    android:id="@+id/ch_rememberme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input_adresse"
+                    android:layout_marginTop="10dp"
+                    android:text="Se souvenir de moi" />
+
+                <Button
+                    android:id="@+id/btn_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Error"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="24dp"
+                    android:onClick="LOGIN"
+                    android:padding="12dp"
+                    android:text="Se connecter" />
+
+                <Button
+                    android:id="@+id/link_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_signup"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:onClick="RedirectToSubscribe"
+                    android:padding="12dp"
+                    android:text="Créer un compte"
+                    android:textSize="16dip" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
