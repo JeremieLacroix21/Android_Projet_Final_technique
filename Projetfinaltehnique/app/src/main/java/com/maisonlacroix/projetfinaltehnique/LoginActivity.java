@@ -61,15 +61,16 @@ public class LoginActivity extends Activity implements Serializable {
         //sercvice
         service = RetrofitBuilder.createService(ApiService.class);
 
+        final String MY_PREFS_NAME = "MyPrefsFile";
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String name = prefs.getString("user_name", "No name defined");//"No name defined" is the default value.
+        String pass = prefs.getString("password", "No name defined");//"No name defined" is the default value.
         //Se souvenir de moi
-       /* SharedPreferences reglages = getPreferences(0);
-        if ()
-        SharedPreferences reglages = getPreferences(0);
-        SharedPreferences.Editor editeur = reglages.edit();
-        editeur.putString("user_id", response.errorBody().toString());
-        editeur.commit();*/
-
-
+        if ( name != "No name defined")
+        {
+            Username.setText(name);
+            Password.setText(pass);
+        }
     }
 
     public void LOGIN(View view)
@@ -86,11 +87,12 @@ public class LoginActivity extends Activity implements Serializable {
                     if(Sesouvenir.isChecked())
                     {
                         //Se souvenir de moi
-                        SharedPreferences reglages = getPreferences(0);
-                        SharedPreferences.Editor editeur = reglages.edit();
-                        editeur.putString("user_name", response.body().getNomutilisateur());
-                        editeur.putString("password",Password.getText().toString());
-                        editeur.commit();
+                        service = RetrofitBuilder.createService(ApiService.class);
+                        final String MY_PREFS_NAME = "MyPrefsFile";
+                        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                        editor.putString("user_name", response.body().getNomutilisateur());
+                        editor.putString("password",Password.getText().toString());
+                        editor.apply();
                     }
                     //todo
                     Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
