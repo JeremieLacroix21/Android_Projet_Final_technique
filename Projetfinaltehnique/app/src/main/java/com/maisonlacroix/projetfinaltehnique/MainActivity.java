@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("key1", ID_USER);
         startActivity(intent);
     }
+
+    public void ProduitsOnClick(View view)
+    {
+        Intent intent = new Intent(this, AllProducts.class);
+        intent.putExtra("key1", ID_USER);
+        startActivity(intent);
+    }
     public void logout(View view)
     {
         Intent intent = new Intent(this, LoginActivity.class);

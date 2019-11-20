@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.maisonlacroix.projetfinaltehnique.Classes.AdapterRV;
 import com.maisonlacroix.projetfinaltehnique.Classes.Product;
 
 import java.util.ArrayList;
@@ -43,37 +41,21 @@ public class AllProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_products);
         queue = Volley.newRequestQueue(this);
-        //ET_filter = (EditText)findViewById(R.id.ET_Filter);
         GetProducts();
 
-        for (Product item:Products) {
-            Toast.makeText(AllProducts.this,item.getNom(),Toast.LENGTH_LONG).show();
-        }
 
-        RV_products = (RecyclerView)findViewById((R.id.RV_products));
-        RV_products.setHasFixedSize(true);
-        rvLayoutManager = new LinearLayoutManager(AllProducts.this);
-        mAdapter = new AdapterRV(Products);
-        RV_products.setLayoutManager(rvLayoutManager);
-        RV_products.setAdapter(mAdapter);
 
     }
 
     public void GetProducts() {
-        //final ArrayList<Product> Products1 = new ArrayList<Product>();
         StringRequest jsonObjRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
         {
             ArrayList<Product> Products1 = new ArrayList<Product>();
             @Override
             public void onResponse(String response) {
-
                 Products1 = new Gson().fromJson(response.toString(), new TypeToken<List<Product>>(){}.getType());
-
-
-
-                //SetRecyclerView(Products);
+                SetRecyclerView(Products1);
             }
-
         },
                 new Response.ErrorListener() {
                     @Override
@@ -97,6 +79,11 @@ public class AllProducts extends AppCompatActivity {
     }
 
     void SetRecyclerView(ArrayList<Product> p){
-
+        RV_products = (RecyclerView)findViewById((R.id.RV_products));
+        RV_products.setHasFixedSize(true);
+        rvLayoutManager = new LinearLayoutManager(AllProducts.this);
+        mAdapter = new AdapterRV(p);
+        RV_products.setLayoutManager(rvLayoutManager);
+        RV_products.setAdapter(mAdapter);
     }
 }
