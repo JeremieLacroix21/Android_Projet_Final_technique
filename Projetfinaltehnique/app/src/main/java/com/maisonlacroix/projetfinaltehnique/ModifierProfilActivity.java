@@ -63,11 +63,8 @@ public class ModifierProfilActivity extends Activity {
 
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
-                    Request.Method.POST, urlGetinfo, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-
-                    try{
+                Request.Method.POST, urlGetinfo, response -> {
+                    try {
                         JSONObject jsonResponse = new JSONObject(response);
                         username_json = jsonResponse.getString("nomutilisateur");
                         Email_json  = jsonResponse.getString("email");
@@ -77,24 +74,19 @@ public class ModifierProfilActivity extends Activity {
                         Email.setText(Email_json);
                         Phone.setText(Phone_json);
                         Description.setText(Description_json);
-                    }catch (JSONException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-            },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            ErreurText_Modifier.setText(error.toString());
-                        }
-                    }) {
+                },
+                error -> ErreurText_Modifier.setText(error.toString())
+            ) {
                 @Override
                 public String getBodyContentType() {
                     return "application/x-www-form-urlencoded; charset=UTF-8";
                 }
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
                     params.put("iduser", ID_USER);
                     return params;
                 }
@@ -105,19 +97,11 @@ public class ModifierProfilActivity extends Activity {
     public void ModifierProfil(View view) {
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
-                    Request.Method.POST, urlUpdateinfo, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Toast.makeText(ModifierProfilActivity.this,"Profile modifié",Toast.LENGTH_LONG).show();
-                }
-            },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            ErreurText_Modifier.setText(error.toString());
-
-                        }
-                    }) {
+                    Request.Method.POST,
+                    urlUpdateinfo,
+                    response -> Toast.makeText(ModifierProfilActivity.this,"Profile modifié",Toast.LENGTH_LONG).show(),
+                    error -> ErreurText_Modifier.setText(error.toString())
+            ) {
                 @Override
                 public String getBodyContentType() {
                     return "application/x-www-form-urlencoded; charset=UTF-8";

@@ -30,15 +30,12 @@ import retrofit2.Callback;
 
 public class LoginActivity extends Activity implements Serializable {
 
-    private String url = "http://3.15.151.13/Laravel/api/login";
     private EditText Username;
     private EditText Password;
     private TextView ErreurText;
     private Button loginButton;
     private RequestQueue queue;
     private CheckBox Sesouvenir;
-
-
 
     //for the login logic
 
@@ -66,7 +63,7 @@ public class LoginActivity extends Activity implements Serializable {
         String name = prefs.getString("user_name", "No name defined");//"No name defined" is the default value.
         String pass = prefs.getString("password", "No name defined");//"No name defined" is the default value.
         //Se souvenir de moi
-        if ( name != "No name defined")
+        if (!name.equals("No name defined"))
         {
             Sesouvenir.setChecked(true);
             Username.setText(name);
@@ -119,8 +116,7 @@ public class LoginActivity extends Activity implements Serializable {
     }
 
     public void Connection(View vue) {
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.Theme_AppCompat_DayNight_Dialog);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog);
         if (validate()) {
             final String user = Username.getText().toString();
             final String password = Password.getText().toString();
@@ -130,40 +126,33 @@ public class LoginActivity extends Activity implements Serializable {
 
             //Connection
             StringRequest jsonObjRequest = new StringRequest(
-                    Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    if(Sesouvenir.isChecked())
-                    {
+                Request.Method.POST,
+                "http://3.15.151.13/Laravel/api/",
+                response -> {
+                    if (Sesouvenir.isChecked()) {
                         //Se souvenir de moi
                         SharedPreferences reglages = getPreferences(0);
                         SharedPreferences.Editor editeur = reglages.edit();
                         editeur.putString("user", response);
                         editeur.commit();
                     }
-                    Toast.makeText(LoginActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
+                },
+                error -> {
+                    if (error.networkResponse.statusCode == 401) {
+                        ErreurText.setText("Les informations entrées sont invalides");
+                    } else if (error.networkResponse.statusCode == 402) {
+                        ErreurText.setText("Votre compte n'est pas encore validé");
+                    }
                 }
-            },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if(error.networkResponse.statusCode == 401)
-                            {
-                                ErreurText.setText("Les informations entrées sont invalides");
-                            }
-                            else if(error.networkResponse.statusCode == 402)
-                            {
-                                ErreurText.setText("Votre compte n'est pas encore validé");
-                            }
-                        }
-                    }) {
+            ) {
                 @Override
                 public String getBodyContentType() {
                     return "application/x-www-form-urlencoded; charset=UTF-8";
                 }
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
                     params.put("name", user);
                     params.put("password", password);
                     return params;

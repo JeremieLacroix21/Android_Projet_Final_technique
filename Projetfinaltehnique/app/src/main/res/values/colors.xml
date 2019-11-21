@@ -3,6 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="logo">#333333</color>
     <color name="error">#B32020</color>
+    <color name="dark_text">#263238</color>
+    <color name="light_text">#F5F7FA</color>
+    <color name="light_purple">#A8A7FF</color>
+    <color name="light_orange">#FCDCD6</color>
+    <color name="green">#02de72</color>
 </resources>
