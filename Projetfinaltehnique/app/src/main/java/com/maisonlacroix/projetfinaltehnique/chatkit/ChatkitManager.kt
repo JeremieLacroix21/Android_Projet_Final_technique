@@ -18,7 +18,7 @@ object ChatkitManager {
     private const val INSTANCE_LOCATOR = "v1:us1:b11e2a1a-b943-4206-9800-c883a9855b69"
     private const val TOKEN_PROVIDER_URL = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/b11e2a1a-b943-4206-9800-c883a9855b69/token"
     //TODO: Change api url once it is migrated on the AWS
-    private const val API_URL = "http://10.0.2.2:8000"
+    private const val API_URL = "http://3.15.151.13/Laravel/api"
     const val LOG_TAG = "DEMO_APP"
 
     private lateinit var chatManager: ChatManager
@@ -118,7 +118,7 @@ object ChatkitManager {
 
         val req = JsonObjectRequest(
             Request.Method.POST,
-            "$API_URL/api/GetAllNotInConvSuppliers",
+            "$API_URL/GetAllNotInConvSuppliers",
             params,
             Response.Listener { res ->
                 Log.println(Log.DEBUG, "", res.getJSONArray("users").toString())
@@ -143,7 +143,7 @@ object ChatkitManager {
 
         val req = JsonObjectRequest(
             Request.Method.POST,
-            "$API_URL/api/CreateUser",
+            "$API_URL/CreateUser",
             params,
             Response.Listener { res ->
                 Log.println(Log.DEBUG, "", res.toString())
@@ -166,7 +166,7 @@ object ChatkitManager {
 
         val req = JsonObjectRequest(
             Request.Method.POST,
-            "$API_URL/api/GetUserForChat",
+            "$API_URL/GetUserForChat",
             params,
             Response.Listener { res ->
                 Log.println(Log.DEBUG, "", res.toString())
