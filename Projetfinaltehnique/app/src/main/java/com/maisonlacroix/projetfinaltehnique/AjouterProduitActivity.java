@@ -2,6 +2,7 @@ package com.maisonlacroix.projetfinaltehnique;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,18 +12,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -45,20 +41,29 @@ public class AjouterProduitActivity extends Activity {
     private EditText quantite;
     private EditText tags;
     private TextView Textview_error_AjoutProduit;
+    private ImageView imageView;
 
-
+    private ImageView image;
     private String ImagePath;
     private String ImageName;
+    private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private String Tags[] = {"test", "android", "ajout", "produit"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ajouter_produit);
 
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra("key1");
+
+
+
+        if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
+        } else {
+            EasyPermissions.requestPermissions(this, "Access for storage",
+                    101, galleryPermissions);
+        }
 
 
         Nom = findViewById(R.id.input_nom_AjoutProduit);
@@ -68,8 +73,24 @@ public class AjouterProduitActivity extends Activity {
         tags = findViewById(R.id.input_tags_AjoutProduit);
         Textview_error_AjoutProduit = findViewById(R.id.Textview_error_AjoutProduit);
 
+        Button buttonLoadImage = (Button) findViewById(R.id.BTN_ChoisirImage_AjouterProduit);
+        buttonLoadImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent i = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+            }
+        });
+
+
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -93,27 +114,6 @@ public class AjouterProduitActivity extends Activity {
 
 
     }
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
-            imageView.setImageResource(R.drawable.mathieu);
-
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-        }
-    }*/
 
 
     public void AjouterProduit(View view)
@@ -197,20 +197,9 @@ public class AjouterProduitActivity extends Activity {
 
 
     public void pickFromGallery(View view) {
-
-
-
-        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
-        /*//Create an Intent with action as ACTION_PICK
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        // Sets the type as image/*. This ensures only components of type image are selected
-        intent.setType("image/*");
-        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
-        String[] mimeTypes = {"image/jpeg", "image/png"};
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-        // Launching the Intent
-        startActivityForResult(intent,RESULT_LOAD_IMAGE);*/
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
     }
 
 
