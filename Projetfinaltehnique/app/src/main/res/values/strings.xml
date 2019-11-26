@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Projetfinal tehnique</string>
+    <string name="app_name">ExpressShop</string>
 
     <array name="TypeUserArray">
         <item>Distributeur</item>
