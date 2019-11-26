@@ -146,11 +146,13 @@ object ChatkitManager {
             "$API_URL/CreateUser",
             params,
             Response.Listener { res ->
+                Log.println(Log.DEBUG, "", "========================== SUCCESS CREATE USER ==========================")
                 Log.println(Log.DEBUG, "", res.toString())
                 onSuccess()
             },
             Response.ErrorListener { err ->
-                Log.println(Log.ERROR, "", "Big : $err")
+                Log.println(Log.DEBUG, "", "========================== ERROR CREATE USER ==========================")
+                Log.println(Log.ERROR, "", "$err")
             }
         )
 

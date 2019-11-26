@@ -1,5 +1,6 @@
 package com.maisonlacroix.projetfinaltehnique.chatkit.chat
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.maisonlacroix.projetfinaltehnique.R
@@ -29,6 +30,7 @@ class MessageAdapter(private val currentUserId: String)
     }
 
     fun addMessage(message: Message) {
+        Log.println(Log.DEBUG, "", "==================MESSAGE ADDED")
         this.messages.add(message)
         notifyItemInserted(this.messages.size)
     }

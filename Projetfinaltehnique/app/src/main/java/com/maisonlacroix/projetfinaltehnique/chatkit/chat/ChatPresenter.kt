@@ -45,6 +45,7 @@ class ChatPresenter :  BasePresenter<ChatPresenter.View>(){
             roomId = room.id ,
             listeners = RoomListeners(
                 onMultipartMessage = { message ->
+
                     view?.onMessageReceived(message)
                     updateReadCursor(room.id, message.id)
                 },
