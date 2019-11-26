@@ -186,4 +186,9 @@ public class LoginActivity extends Activity implements Serializable {
         }
         return valid;
     }
+    public void RedirectToSubscribe(View v)
+    {
+        Intent i = new Intent(this, SubscribeActivity.class);
+        startActivity(i);
+    }
 }
