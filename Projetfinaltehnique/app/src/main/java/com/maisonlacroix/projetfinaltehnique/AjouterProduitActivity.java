@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
+import com.squareup.picasso.Picasso;
 
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
@@ -58,7 +59,8 @@ public class AjouterProduitActivity extends Activity {
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra("key1");
 
-
+        ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
+        Picasso.get().load("http://3.15.151.13/expressShop/assets/img/ESLogo2_Black_NoBg_NoText_Reverse_278x155.png").into(imageView);
 
         if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
         } else {
@@ -195,31 +197,6 @@ public class AjouterProduitActivity extends Activity {
         }
         return valid;
     }
-
-
-    public void pickFromGallery(View view) {
-<<<<<<< HEAD
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
-=======
-
-
-        //todo
-        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
-        /*//Create an Intent with action as ACTION_PICK
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        // Sets the type as image/*. This ensures only components of type image are selected
-        intent.setType("image/*");
-        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
-        String[] mimeTypes = {"image/jpeg", "image/png"};
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-        // Launching the Intent
-        startActivityForResult(intent,RESULT_LOAD_IMAGE);*/
->>>>>>> 1f879232baab8ace30543e2dd083e6a6ba740cb6
-    }
-
 
     public void RedirectToMainMenu(View view)
     {
