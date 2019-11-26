@@ -36,7 +36,8 @@ public class AjouterProduitActivity extends Activity {
 
     //service API
     ApiService service;
-    Call<String> Token;
+    Call<String> Token1;
+    Call<String> Token2;
     private String ID_USER;
 
     private EditText Nom;
@@ -119,9 +120,9 @@ public class AjouterProduitActivity extends Activity {
     public void AjouterProduit(View view)
     {
         if(validate()) {
-            Token = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
             //requete de login
-            Token.enqueue(new Callback<String>() {
+            Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                     if (response.isSuccessful())
@@ -141,9 +142,9 @@ public class AjouterProduitActivity extends Activity {
                 }
             });
 
-            Token = service.AddImage("temp.jpg");
+            Token2 = service.AddImage("temp.jpg");
             //requete d'ajout d'image
-            Token.enqueue(new Callback<String>() {
+            Token2.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                     if (response.isSuccessful())
@@ -199,7 +200,7 @@ public class AjouterProduitActivity extends Activity {
     public void pickFromGallery(View view) {
 
 
-
+        //todo
         Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, RESULT_LOAD_IMAGE);
         /*//Create an Intent with action as ACTION_PICK

@@ -2,6 +2,7 @@ package com.maisonlacroix.projetfinaltehnique;
 
 import android.app.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -52,17 +53,26 @@ public class SubscribeActivity extends Activity {
         subscribeButton = (Button) findViewById(R.id.BTN_Subscribe);
         ReturnToLoginButton = (Button) findViewById(R.id.BTN_ReturnToLogin);
         Username = (EditText) findViewById(R.id.input_username_modifier);
+        Username.setText("");
         Password = (EditText) findViewById(R.id.input_password);
+        Password.setText("");
         ConfirmPassword = (EditText) findViewById(R.id.input_confirmpassword);
+        ConfirmPassword.setText("");
         nom = (EditText) findViewById(R.id.input_lastname);
+        nom.setText("");
         prenom = (EditText) findViewById(R.id.input_firstname);
+        prenom.setText("");
         email = (EditText) findViewById(R.id.input_email_modifier);
+        email.setText("");
         type = (Spinner) findViewById(R.id.spinner_typeuser);
         telephone = (EditText) findViewById(R.id.input_phone);
+        telephone.setText("");
         description = (EditText) findViewById(R.id.input_description_modifier);
+        description.setText("");
         adresse = (EditText) findViewById(R.id.input_adress);
+        adresse.setText("");
         ErreurText_subscribe = (TextView) findViewById(R.id.Textview_error_subscribe);
-
+        ErreurText_subscribe.setText("");
         type.setSelection(0);
     }
     public void RedirectToLogin(View view)
@@ -100,7 +110,7 @@ public class SubscribeActivity extends Activity {
             StringRequest jsonObjRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(SubscribeActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(SubscribeActivity.this,"Utilisateur Créé",Toast.LENGTH_LONG).show();
                     RedirectToLoginAfterSubscription();
                 }
             },
