@@ -38,7 +38,7 @@ class ChatActivity : AppCompatActivity(), ChatPresenter.View {
 
             //handle sending messages
             txtMessage.setOnEditorActionListener { _, actionId, _ ->
-                if(actionId == EditorInfo.IME_ACTION_SEND){
+                if (txtMessage.length() > 0 && actionId == EditorInfo.IME_ACTION_SEND){
                     presenter.sendMessageToRoom(txtMessage.text.toString())
                     txtMessage.setText("")
                     true
@@ -91,7 +91,7 @@ class ChatActivity : AppCompatActivity(), ChatPresenter.View {
 
     override fun onOtherMember(person: User) {
         runOnUiThread {
-            lblName.text = "Conversation avec " + person.name
+            lblName.text = person.name
             displayPresence(person.presence)
         }
 

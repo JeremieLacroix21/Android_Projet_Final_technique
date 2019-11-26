@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.maisonlacroix.projetfinaltehnique.R
 import com.pusher.chatkit.messages.multipart.Message
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
 
 
-class MessageAdapter(private val currentUserId: String)
-    : androidx.recyclerview.widget.RecyclerView.Adapter<MessageViewHolder>() {
+class MessageAdapter(private val currentUserId: String) : androidx.recyclerview.widget.RecyclerView.Adapter<MessageViewHolder>() {
+    private val HOUR_OFFSET = 1
 
     var messages = mutableListOf<Message>()
 

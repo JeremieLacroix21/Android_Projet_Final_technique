@@ -35,7 +35,7 @@ class PersonViewHolder (itemView: View, val listener: PersonAdapterListener) : R
         if (unreadCount == 0) {
             itemView.lblUnreadCount.visibility = View.GONE
         } else if (unreadCount > 99) {
-            itemView.lblUnreadCount.text = ":D"
+            itemView.lblUnreadCount.text = "+100"
         } else {
             itemView.lblUnreadCount.text = unreadCount.toString()
         }

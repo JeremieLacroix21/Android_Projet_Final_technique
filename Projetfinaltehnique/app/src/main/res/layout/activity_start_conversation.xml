@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".chatkit.conversations.StartConversationActivity">
-
-    <View
-            android:id="@+id/containerTopBar2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundroute"
+    tools:context=".chatkit.conversations.StartConversationActivity">
 
     <RelativeLayout
-            android:id="@+id/containerContent2"
+        android:id="@+id/containerContent2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lblProductTitle2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/containerTopBar2">
-
-        <RelativeLayout
-                android:id="@+id/containerProduct2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp">
-
-            <TextView
-                    android:id="@+id/lblProductTitle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center|fill"
-                    android:padding="10dp"
-                    android:text="Sélectionnez un fournisseur"
-                    android:textColor="@color/dark_text"
-                    android:textSize="24sp" />
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Sélectionnez un fournisseur pour commencer une nouvelle conversation"
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSuppliers"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/containerProduct2"
-                android:layout_marginTop="15dp" />
+            android:id="@+id/recyclerViewSuppliers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/lblProductTitle2"
+            android:layout_marginTop="15dp" />
 
 
     </RelativeLayout>

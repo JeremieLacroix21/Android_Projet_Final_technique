@@ -1,37 +1,35 @@
 package com.maisonlacroix.projetfinaltehnique.chatkit.chat
 
 import android.view.View
+import android.widget.TextView
 import com.pusher.chatkit.messages.multipart.Message
 import com.pusher.chatkit.messages.multipart.Payload
 import kotlinx.android.synthetic.main.row_message.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class MessageViewHolder (itemView: View)
-    : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+class MessageViewHolder (itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bind(message: Message, currentUserId: String){
+        val msgDateFormat = SimpleDateFormat("yyyy-MM-dd | HH:mm")
+        msgDateFormat.timeZone = Calendar.getInstance().timeZone;
         val inlineMessage: Payload.Inline = message.parts[0].payload as Payload.Inline
-        if (message.sender.id == currentUserId) {
-            itemView.lblMessageFromYou.visibility = View.VISIBLE
-            itemView.lblMessageFromYou.text = inlineMessage.content
 
-            itemView.lblMessageFromOther.visibility = View.INVISIBLE
-            itemView.lblMessageFromOther.text = ""
+        // Workaround for old messages that show up randomly
+        itemView.lblMessageFromYou.visibility = View.INVISIBLE
+        itemView.lblMessageFromOther.visibility = View.INVISIBLE
+        itemView.lblYouMessageDate.visibility = View.INVISIBLE
+        itemView.lblOtherMessageDate.visibility = View.INVISIBLE
 
-            //TODO: Display date
-            //itemView.lblYouMessageDate.visibility = View.VISIBLE
-            //itemView.lblYouMessageDate.text = message.createdAt.toString()
-        } else {
-            itemView.lblMessageFromOther.visibility = View.VISIBLE
-            itemView.lblMessageFromOther.text = inlineMessage.content
+        val displays =
+            if (message.sender.id == currentUserId) arrayOf(itemView.lblMessageFromYou, itemView.lblYouMessageDate)
+            else arrayOf(itemView.lblMessageFromOther, itemView.lblOtherMessageDate)
 
-            itemView.lblMessageFromYou.visibility = View.INVISIBLE
-            itemView.lblMessageFromYou.text = ""
-
-            //TODO: Display date
-            //itemView.lblOtherMessageDate.visibility = View.VISIBLE
-            //itemView.lblOtherMessageDate.text = message.createdAt.toString()
+        displays.forEach {
+            it.visibility  = View.VISIBLE
         }
-
+        displays[0].text = inlineMessage.content
+        displays[1].text = msgDateFormat.format(message.createdAt)
     }
 
 }
