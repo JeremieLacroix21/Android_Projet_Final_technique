@@ -64,7 +64,7 @@
                 android:text="Modifier Profil" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_inventaire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -72,7 +72,7 @@
                 android:text="Inventaire" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/button_addproduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -80,7 +80,7 @@
                 android:text="Ajouter Un Produit" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_commandes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -112,7 +112,7 @@
                 android:text="Liste des Compagnies" />
 
             <Button
-                android:id="@+id/BTN_produits"
+                android:id="@+id/button_produits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="ProduitsOnClick"

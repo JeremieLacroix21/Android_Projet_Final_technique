@@ -2,7 +2,8 @@ package com.maisonlacroix.projetfinaltehnique.Classes;
 
 import com.squareup.moshi.Json;
 
-public class User {
+public class UserInfo {
+
     @Json(name = "iduser")
     private Integer iduser;
     @Json(name = "nomutilisateur")
@@ -14,11 +15,15 @@ public class User {
     @Json(name = "TypeUser")
     private String typeUser;
     @Json(name = "confirme")
-    private Integer confirme;
+    private String confirme;
     @Json(name = "dateinscription")
     private String dateinscription;
     @Json(name = "email")
     private String email;
+    @Json(name = "Telephone")
+    private String telephone;
+    @Json(name = "description")
+    private String description;
 
     public Integer getIduser() {
         return iduser;
@@ -60,11 +65,11 @@ public class User {
         this.typeUser = typeUser;
     }
 
-    public Integer getConfirme() {
+    public String getConfirme() {
         return confirme;
     }
 
-    public void setConfirme(Integer confirme) {
+    public void setConfirme(String confirme) {
         this.confirme = confirme;
     }
 
@@ -84,4 +89,19 @@ public class User {
         this.email = email;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
