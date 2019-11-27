@@ -21,6 +21,10 @@ import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 import com.squareup.picasso.Picasso;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
 import java.io.File;
 import java.util.UUID;
 
@@ -88,7 +92,6 @@ public class AjouterProduitActivity extends Activity {
         bouton_ajouter.setOnClickListener(v -> AjouterProduit());
         Button buttonLoadImage = (Button) findViewById(R.id.BTN_ChoisirImage_AjouterProduit);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
 
@@ -99,11 +102,7 @@ public class AjouterProduitActivity extends Activity {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
-
-
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,11 +128,21 @@ public class AjouterProduitActivity extends Activity {
         }
     }
 
+<<<<<<< HEAD
     public void AjouterProduit()
     {
         if(validate()) {
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),uniqueId + ".jpg",description.getText().toString(),Tags);
             //requete de login
+=======
+    public void AjouterProduit(View view)
+    {
+        
+        if(validate()) {
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
+
+             //requete de login
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
             Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -151,6 +160,7 @@ public class AjouterProduitActivity extends Activity {
                 }
             });
 
+<<<<<<< HEAD
 
 
             //Create a file object using file path
@@ -160,6 +170,36 @@ public class AjouterProduitActivity extends Activity {
         }
     }
 
+=======
+        }
+    }
+
+    /*public void AjouterImage()
+    {
+        //not working
+        Token2.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response.isSuccessful())
+                {
+                    //todo
+                } else {
+                    Log.e("ajout image  error : ", response.errorBody().toString());
+                    if (response.code() == 400) {
+                        Log.e("ajout image error : ", "...");
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("ajout image error : ", t.getMessage());
+            }
+        });
+
+    }
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
+
+     */
 
     private boolean validate()
     {
@@ -191,6 +231,7 @@ public class AjouterProduitActivity extends Activity {
         }
         return valid;
     }
+<<<<<<< HEAD
 
     public void RedirectToMainMenu(View view)
     {
@@ -199,4 +240,6 @@ public class AjouterProduitActivity extends Activity {
         startActivity(intent);
     }
 
+=======
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
 }

@@ -6,11 +6,14 @@ import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
 import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 
+<<<<<<< HEAD
 
 import okhttp3.MultipartBody;
 
 import okhttp3.ResponseBody;
 
+=======
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -43,6 +46,7 @@ public interface ApiService {
 
     @POST("AddProduct")
     @FormUrlEncoded
+<<<<<<< HEAD
     Call<String> AddProduct(@Field("nom") String nom,
                             @Field("prix") String prix,
                             @Field("idFournisseur") String idFournisseur,
@@ -51,6 +55,26 @@ public interface ApiService {
                             @Field("description") String description,
                             @Field("Tags") String[] Tags);
     
+=======
+    Call<String> AddProduct( @Field("nom") String nom,
+                             @Field("prix") String prix,
+                             @Field("idFournisseur") String idFournisseur,
+                             @Field("enStock") String enStock,
+                             @Field("imgGUID") String imgGUID,
+                             @Field("description") String description,
+                             @Field("Tags") String[] Tags);
+
+
+
+    @Multipart
+    @POST("AddImage")
+    Call<ResponseBody> AddImage(@Part MultipartBody.Part file);
+
+    @Multipart
+    @POST("AddImage")
+    @FormUrlEncoded
+    Call<String> AddImage(@Part MultipartBody.Part Image,@Part("Nom")  RequestBody Nom );
+>>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
 
 
     @GET("GetAllUsers")
