@@ -35,6 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+
     //Requete http
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
@@ -50,6 +51,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'org.apache:apache:21'
+
+    //apache
+    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+    compile('org.apache.httpcomponents:httpmime:4.3') {
+        exclude module: "httpclient"
+    }
 
 
 }
