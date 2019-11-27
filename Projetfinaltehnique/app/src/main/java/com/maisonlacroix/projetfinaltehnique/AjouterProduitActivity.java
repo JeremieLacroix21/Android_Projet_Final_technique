@@ -21,16 +21,6 @@ import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 import com.squareup.picasso.Picasso;
 
-<<<<<<< HEAD
-=======
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-
->>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
 import java.io.File;
 import java.util.UUID;
 
@@ -138,25 +128,11 @@ public class AjouterProduitActivity extends Activity {
 
         }
     }
-<<<<<<< HEAD
-    public void AjouterProduit(View view)
-    {
-        String namef = UUID.randomUUID().toString();
-        if(validate()) {
-            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),namef,description.getText().toString(),Tags);
-=======
-
 
     public void AjouterProduit()
     {
-
-        if(uniqueId == null) {
-            uniqueId = UUID.randomUUID().toString();
-        }
         if(validate()) {
-            AjouterImage();
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),uniqueId + ".jpg",description.getText().toString(),Tags);
->>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
@@ -175,90 +151,15 @@ public class AjouterProduitActivity extends Activity {
                 }
             });
 
-<<<<<<< HEAD
-            //uploadToServer(ImagePath, );
+
 
             //Create a file object using file path
-            File file = new File(ImagePath);
-            // Create a request body with file and image media type
-            RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
 
-            // Create MultipartBody.Part using file request-body,file name and part name
-            MultipartBody.Part part = MultipartBody.Part.createFormData("upload", namef, fileReqBody);
 
-            //
-            //Call call = uploadAPIs.uploadImage(part, description);
-            Call call = service.AddImage(part);
-
-            call.enqueue(new Callback() {
-                @Override
-                public void onResponse(Call call, Response response) {
-
-                }
-
-                @Override
-                public void onFailure(Call call, Throwable t) {
-
-                }
-            });
-
-           // Token2 = service.AddImage("temp.jpg");
-            //requete d'ajout d'image
-           // Token2.enqueue(new Callback<String>() {
-             //   @Override
-             //   public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-              //      if (response.isSuccessful())
-                 //   {
-                //        //todo
-                  //  } else {
-                  //      Log.e("request error : ", response.errorBody().toString());
-                  //      if (response.code() == 400) {
-                 //           Log.e("request error : ", "...");
-                  //      }
-               //     }
-               // }
-              //  @Override
-              //  public void onFailure(Call<String> call, Throwable t) {
-              //      Log.e("request error : ", t.getMessage());
-             //   }
-           // });
-        }
-=======
 
         }
     }
 
-    public void AjouterImage(Uri fileuri)
-    {
-        RequestBody NamePart = RequestBody.create(MultipartBody.FORM, /*namefile*/"allo");
-        File file = new File(ImagePath);
-        RequestBody FilePart = RequestBody.create(MediaType.parse(getContentResolver().getType(fileuri)),
-                file);
-
-
-        MultipartBody.Part file2 = MultipartBody.Part.createFormData("Image", file.getName(),FilePart);
-        //requete d'ajout d'image
-        Token2.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                if (response.isSuccessful())
-                {
-                    //todo
-                } else {
-                    Log.e("ajout image  error : ", response.errorBody().toString());
-                    if (response.code() == 400) {
-                        Log.e("ajout image error : ", "...");
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.e("ajout image error : ", t.getMessage());
-            }
-        });
-
->>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
-    }
 
     private boolean validate()
     {
@@ -291,7 +192,6 @@ public class AjouterProduitActivity extends Activity {
         return valid;
     }
 
-<<<<<<< HEAD
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
@@ -299,10 +199,4 @@ public class AjouterProduitActivity extends Activity {
         startActivity(intent);
     }
 
-    private void uploadToServer(String filePath, String nom) {
-
-
-    }
-=======
->>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
 }
