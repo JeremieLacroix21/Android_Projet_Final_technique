@@ -19,9 +19,17 @@ import android.widget.TextView;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.UUID;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AjouterProduitActivity extends Activity {
 
@@ -104,6 +112,7 @@ public class AjouterProduitActivity extends Activity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+            ImagePath = picturePath;
             cursor.close();
 
             ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
@@ -113,12 +122,11 @@ public class AjouterProduitActivity extends Activity {
 
 
     }
-
-
     public void AjouterProduit(View view)
     {
+        String namef = UUID.randomUUID().toString();
         if(validate()) {
-            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"temp.jpg",description.getText().toString(),Tags);
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),namef,description.getText().toString(),Tags);
             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
@@ -140,26 +148,52 @@ public class AjouterProduitActivity extends Activity {
                 }
             });
 
-            Token2 = service.AddImage("temp.jpg");
-            //requete d'ajout d'image
-            Token2.enqueue(new Callback<String>() {
+            //uploadToServer(ImagePath, );
+
+            //Create a file object using file path
+            File file = new File(ImagePath);
+            // Create a request body with file and image media type
+            RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+
+            // Create MultipartBody.Part using file request-body,file name and part name
+            MultipartBody.Part part = MultipartBody.Part.createFormData("upload", namef, fileReqBody);
+
+            //
+            //Call call = uploadAPIs.uploadImage(part, description);
+            Call call = service.AddImage(part);
+
+            call.enqueue(new Callback() {
                 @Override
-                public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                    if (response.isSuccessful())
-                    {
-                        //todo
-                    } else {
-                        Log.e("request error : ", response.errorBody().toString());
-                        if (response.code() == 400) {
-                            Log.e("request error : ", "...");
-                        }
-                    }
+                public void onResponse(Call call, Response response) {
+
                 }
+
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Log.e("request error : ", t.getMessage());
+                public void onFailure(Call call, Throwable t) {
+
                 }
             });
+
+           // Token2 = service.AddImage("temp.jpg");
+            //requete d'ajout d'image
+           // Token2.enqueue(new Callback<String>() {
+             //   @Override
+             //   public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+              //      if (response.isSuccessful())
+                 //   {
+                //        //todo
+                  //  } else {
+                  //      Log.e("request error : ", response.errorBody().toString());
+                  //      if (response.code() == 400) {
+                 //           Log.e("request error : ", "...");
+                  //      }
+               //     }
+               // }
+              //  @Override
+              //  public void onFailure(Call<String> call, Throwable t) {
+              //      Log.e("request error : ", t.getMessage());
+             //   }
+           // });
         }
     }
 
@@ -199,5 +233,10 @@ public class AjouterProduitActivity extends Activity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("key1", ID_USER);
         startActivity(intent);
+    }
+
+    private void uploadToServer(String filePath, String nom) {
+
+
     }
 }

@@ -6,11 +6,16 @@ import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
 import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ApiService {
     /*
@@ -44,9 +49,13 @@ public interface ApiService {
                              @Field("description") String description,
                              @Field("Tags") String[] Tags);
 
+    //@POST("AddImage")
+    //@FormUrlEncoded
+    //Call<String> AddImage( @Field("Nom") String nom);
+
+    @Multipart
     @POST("AddImage")
-    @FormUrlEncoded
-    Call<String> AddImage( @Field("Nom") String nom);
+    Call<ResponseBody> AddImage(@Part MultipartBody.Part file);
 
     @GET("GetAllUsers")
     Call<User[]> GetAllUsers();
