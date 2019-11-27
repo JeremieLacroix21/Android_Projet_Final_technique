@@ -11,12 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
@@ -37,9 +33,6 @@ public class LoginActivity extends Activity implements Serializable {
     private RequestQueue queue;
     private CheckBox Sesouvenir;
 
-    //for the login logic
-
-    //service API
     ApiService service;
     Call<Access_Token> Token;
 

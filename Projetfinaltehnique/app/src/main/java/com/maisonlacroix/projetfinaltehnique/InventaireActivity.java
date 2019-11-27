@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
-import com.maisonlacroix.projetfinaltehnique.Classes.User;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 
@@ -22,7 +20,6 @@ import retrofit2.Callback;
 
 public class InventaireActivity extends AppCompatActivity {
     private String ID_USER;
-    //service API
     ApiService service;
     Call<ProduitInventaire[]> Token;
 
@@ -41,7 +38,6 @@ public class InventaireActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra("key1");
 
-        //sercvice
         service = RetrofitBuilder.createService(ApiService.class);
 
         Liste_nom = (ListView) findViewById(R.id.Liste_nom_inventaire);

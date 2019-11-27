@@ -3,24 +3,12 @@ package com.maisonlacroix.projetfinaltehnique;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
-import com.maisonlacroix.projetfinaltehnique.Classes.User;
-import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 import com.maisonlacroix.projetfinaltehnique.chatkit.conversations.ConversationsActivity;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
 
