@@ -21,12 +21,6 @@ import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 import com.squareup.picasso.Picasso;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 
 import java.io.File;
 import java.util.UUID;
@@ -37,6 +31,8 @@ import okhttp3.RequestBody;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AjouterProduitActivity extends Activity {
 
@@ -129,17 +125,13 @@ public class AjouterProduitActivity extends Activity {
         }
     }
 
-
-    public void AjouterProduit()
+    public void AjouterProduit(View view)
     {
-
-        if(uniqueId == null) {
-            uniqueId = UUID.randomUUID().toString();
-        }
+        
         if(validate()) {
-
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
-            //requete de login
+
+             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -156,7 +148,6 @@ public class AjouterProduitActivity extends Activity {
                     Log.e("ajout produit error : ", t.getMessage());
                 }
             });
-
 
         }
     }
@@ -217,5 +208,4 @@ public class AjouterProduitActivity extends Activity {
         }
         return valid;
     }
-
 }

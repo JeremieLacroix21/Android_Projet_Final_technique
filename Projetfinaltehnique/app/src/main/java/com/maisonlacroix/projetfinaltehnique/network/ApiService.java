@@ -6,10 +6,6 @@ import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
 import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 
-import java.io.File;
-
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -50,10 +46,17 @@ public interface ApiService {
                              @Field("description") String description,
                              @Field("Tags") String[] Tags);
 
+
+
+    @Multipart
+    @POST("AddImage")
+    Call<ResponseBody> AddImage(@Part MultipartBody.Part file);
+
     @Multipart
     @POST("AddImage")
     @FormUrlEncoded
     Call<String> AddImage(@Part MultipartBody.Part Image,@Part("Nom")  RequestBody Nom );
+
 
     @GET("GetAllUsers")
     Call<User[]> GetAllUsers();
