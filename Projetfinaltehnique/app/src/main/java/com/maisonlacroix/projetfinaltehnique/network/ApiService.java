@@ -53,7 +53,7 @@ public interface ApiService {
     @Multipart
     @POST("AddImage")
     @FormUrlEncoded
-    Call<String> AddImage(@Part MultipartBody.Part Image,@Part("Nom") String Nom );
+    Call<String> AddImage(@Part MultipartBody.Part Image,@Part("Nom")  RequestBody Nom );
 
     @GET("GetAllUsers")
     Call<User[]> GetAllUsers();

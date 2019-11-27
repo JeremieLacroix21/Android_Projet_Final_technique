@@ -93,7 +93,6 @@ public class AjouterProduitActivity extends Activity {
         bouton_ajouter.setOnClickListener(v -> AjouterProduit());
         Button buttonLoadImage = (Button) findViewById(R.id.BTN_ChoisirImage_AjouterProduit);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
 
@@ -104,11 +103,7 @@ public class AjouterProduitActivity extends Activity {
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
-
-
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -142,8 +137,8 @@ public class AjouterProduitActivity extends Activity {
             uniqueId = UUID.randomUUID().toString();
         }
         if(validate()) {
-            AjouterImage();
-            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),uniqueId + ".jpg",description.getText().toString(),Tags);
+
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
@@ -166,16 +161,9 @@ public class AjouterProduitActivity extends Activity {
         }
     }
 
-    public void AjouterImage(Uri fileuri)
+    /*public void AjouterImage()
     {
-        RequestBody NamePart = RequestBody.create(MultipartBody.FORM, /*namefile*/"allo");
-        File file = new File(ImagePath);
-        RequestBody FilePart = RequestBody.create(MediaType.parse(getContentResolver().getType(fileuri)),
-                file);
-
-
-        MultipartBody.Part file2 = MultipartBody.Part.createFormData("Image", file.getName(),FilePart);
-        //requete d'ajout d'image
+        //not working
         Token2.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -196,6 +184,8 @@ public class AjouterProduitActivity extends Activity {
         });
 
     }
+
+     */
 
     private boolean validate()
     {
