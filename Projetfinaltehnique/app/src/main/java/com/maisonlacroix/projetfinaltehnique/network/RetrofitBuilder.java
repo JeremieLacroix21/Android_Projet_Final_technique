@@ -15,7 +15,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class RetrofitBuilder {
     private static final String mBaseURL = "http://3.15.151.13/Laravel/api/";
-
     private final static OkHttpClient client = buildClient();
     private final static Retrofit retrofit = buildRetrofit(client);
 

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
+import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
 import com.squareup.picasso.Picasso;
 
+<<<<<<< HEAD
+=======
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+
+>>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
 import java.io.File;
 import java.util.UUID;
 
@@ -34,9 +46,7 @@ import retrofit2.Retrofit;
 public class AjouterProduitActivity extends Activity {
 
 
-    //pour les photos :
-    private static int RESULT_LOAD_IMAGE = 1;
-    private String picturePath;
+
 
 
     //service API
@@ -52,10 +62,12 @@ public class AjouterProduitActivity extends Activity {
     private EditText tags;
     private TextView Textview_error_AjoutProduit;
     private ImageView imageView;
+    private Button bouton_ajouter;
+    private String uniqueId = null;
 
-    private ImageView image;
+    //pour les photos :
+    private static int RESULT_LOAD_IMAGE = 1;
     private String ImagePath;
-    private String ImageName;
     private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private String Tags[] = {"test", "android", "ajout", "produit"};
@@ -63,6 +75,9 @@ public class AjouterProduitActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_produit);
+
+        //sercvice
+        service = RetrofitBuilder.createService(ApiService.class);
 
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra("key1");
@@ -79,7 +94,8 @@ public class AjouterProduitActivity extends Activity {
         quantite = findViewById(R.id.input_quantité_AjoutProduit);
         tags = findViewById(R.id.input_tags_AjoutProduit);
         Textview_error_AjoutProduit = findViewById(R.id.Textview_error_AjoutProduit);
-
+        bouton_ajouter = findViewById(R.id.BTN_AjouterProduit);
+        bouton_ajouter.setOnClickListener(v -> AjouterProduit());
         Button buttonLoadImage = (Button) findViewById(R.id.BTN_ChoisirImage_AjouterProduit);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
@@ -118,36 +134,48 @@ public class AjouterProduitActivity extends Activity {
             ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
+
+
         }
-
-
     }
+<<<<<<< HEAD
     public void AjouterProduit(View view)
     {
         String namef = UUID.randomUUID().toString();
         if(validate()) {
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),namef,description.getText().toString(),Tags);
+=======
+
+
+    public void AjouterProduit()
+    {
+
+        if(uniqueId == null) {
+            uniqueId = UUID.randomUUID().toString();
+        }
+        if(validate()) {
+            AjouterImage();
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),uniqueId + ".jpg",description.getText().toString(),Tags);
+>>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                     if (response.isSuccessful())
                     {
+
                         //todo
                     } else {
-                        Log.e("request error : ", response.errorBody().toString());
-
-                        if (response.code() == 400) {
-                            Log.e("request error : ", "...");
-                        }
+                        Log.e("ajout produit  error : ", response.errorBody().toString());
                     }
                 }
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Log.e("request error : ", t.getMessage());
+                    Log.e("ajout produit error : ", t.getMessage());
                 }
             });
 
+<<<<<<< HEAD
             //uploadToServer(ImagePath, );
 
             //Create a file object using file path
@@ -195,6 +223,41 @@ public class AjouterProduitActivity extends Activity {
              //   }
            // });
         }
+=======
+
+        }
+    }
+
+    public void AjouterImage(Uri fileuri)
+    {
+        RequestBody NamePart = RequestBody.create(MultipartBody.FORM, /*namefile*/"allo");
+        File file = new File(ImagePath);
+        RequestBody FilePart = RequestBody.create(MediaType.parse(getContentResolver().getType(fileuri)),
+                file);
+
+
+        MultipartBody.Part file2 = MultipartBody.Part.createFormData("Image", file.getName(),FilePart);
+        //requete d'ajout d'image
+        Token2.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response.isSuccessful())
+                {
+                    //todo
+                } else {
+                    Log.e("ajout image  error : ", response.errorBody().toString());
+                    if (response.code() == 400) {
+                        Log.e("ajout image error : ", "...");
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("ajout image error : ", t.getMessage());
+            }
+        });
+
+>>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
     }
 
     private boolean validate()
@@ -228,6 +291,7 @@ public class AjouterProduitActivity extends Activity {
         return valid;
     }
 
+<<<<<<< HEAD
     public void RedirectToMainMenu(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
@@ -239,4 +303,6 @@ public class AjouterProduitActivity extends Activity {
 
 
     }
+=======
+>>>>>>> d3225bb5aaa90a5c824c6864f75a434d70b71f8e
 }
