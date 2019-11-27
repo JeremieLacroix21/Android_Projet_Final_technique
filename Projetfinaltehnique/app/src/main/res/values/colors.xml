@@ -14,4 +14,7 @@
     <color name="logo_alpha">#25333333</color>
     <color name="other_msg_bubble">#5F5F5F</color>
     <color name="chat_date_text">#798281</color>
+
+    <color name="online_color">#00FFFFFF</color>
+    <color name="offline_color">#CB686885</color>
 </resources>

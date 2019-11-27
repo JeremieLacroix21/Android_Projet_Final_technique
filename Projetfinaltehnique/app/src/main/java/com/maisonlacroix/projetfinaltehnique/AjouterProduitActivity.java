@@ -61,12 +61,9 @@ public class AjouterProduitActivity extends Activity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
 
-        if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
-        } else {
-            EasyPermissions.requestPermissions(this, "Access for storage",
-                    101, galleryPermissions);
+        if (!EasyPermissions.hasPermissions(this, galleryPermissions)) {
+            EasyPermissions.requestPermissions(this, "Access for storage", 101, galleryPermissions);
         }
-
 
         Nom = findViewById(R.id.input_nom_AjoutProduit);
         description = findViewById(R.id.input_Definition_AjoutProduit);

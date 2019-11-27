@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maisonlacroix.projetfinaltehnique.R
 import com.pusher.chatkit.presence.Presence
 import com.pusher.chatkit.users.User
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.row_person.view.*
 
 class PersonViewHolder (itemView: View, val listener: PersonAdapterListener) : RecyclerView.ViewHolder(itemView) {
@@ -17,25 +19,17 @@ class PersonViewHolder (itemView: View, val listener: PersonAdapterListener) : R
 
         itemView.lblProfile.text = user.name
 
+        Picasso.get().load("http://3.15.151.13/expressShop/assets/img/" + user.customData!!["Guid"]).into(itemView.imgProfile)
         if (user.presence == Presence.Online) {
-            val unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.icon_profile)
-            val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
-            DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(context, R.color.green))
-
-            itemView.imgProfile.setImageDrawable(wrappedDrawable)
+            itemView.imgProfile.setColorFilter(ContextCompat.getColor(context, R.color.online_color))
         } else {
-
-            val unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.icon_profile_outline)
-            val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
-            DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(context, R.color.dark_text))
-
-            itemView.imgProfile.setImageDrawable(wrappedDrawable)
+            itemView.imgProfile.setColorFilter(ContextCompat.getColor(context, R.color.offline_color))
         }
 
         if (unreadCount == 0) {
             itemView.lblUnreadCount.visibility = View.GONE
         } else if (unreadCount > 99) {
-            itemView.lblUnreadCount.text = "+100"
+            itemView.lblUnreadCount.text = "100+"
         } else {
             itemView.lblUnreadCount.text = unreadCount.toString()
         }
