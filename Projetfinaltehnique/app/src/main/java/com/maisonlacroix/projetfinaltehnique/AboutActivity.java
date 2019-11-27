@@ -22,16 +22,10 @@ public class AboutActivity extends AppCompatActivity{
         ID_USER = intent.getStringExtra("key1");
 
 
-        TextView textView = (TextView)findViewById(R.id.textView_link);
+        TextView textView = (TextView) findViewById(R.id.textView_link);
         textView.setClickable(true);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         String text = "<a href='http://3.15.151.13/expressShop/'> Express Shop </a>";
         textView.setText(Html.fromHtml(text));
-    }
-    public void RedirectToMainMenu(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("key1", ID_USER);
-        startActivity(intent);
     }
 }

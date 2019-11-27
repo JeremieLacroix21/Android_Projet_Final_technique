@@ -75,7 +75,6 @@ public class LoginActivity extends Activity implements Serializable {
     {
         final Intent i = new Intent(this, MainActivity.class);
         Token = service.login(Username.getText().toString(),Password.getText().toString());
-
         //requete de login
         Token.enqueue(new Callback<Access_Token>() {
             @Override
@@ -95,8 +94,9 @@ public class LoginActivity extends Activity implements Serializable {
                         editor.clear();
                     }
                     //todo
-                    Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this,response.body().getNomutilisateur(),Toast.LENGTH_SHORT).show();
                     i.putExtra("key1",response.body().getIduser().toString());
+                    i.putExtra("key2",response.body().getTypeUser());
                     startActivity(i);
                 } else {
                     Log.e("login error : ", response.errorBody().toString());
@@ -112,7 +112,6 @@ public class LoginActivity extends Activity implements Serializable {
                 Log.e("login error : ",t.getMessage());
             }
         });
-
     }
 
     public void Connection(View vue) {
@@ -136,7 +135,7 @@ public class LoginActivity extends Activity implements Serializable {
                         editeur.putString("user", response);
                         editeur.commit();
                     }
-                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
+
                 },
                 error -> {
                     if (error.networkResponse.statusCode == 401) {

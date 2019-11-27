@@ -149,10 +149,4 @@ public class ModifierProfilActivity extends Activity {
         }
         return valid;
     }
-
-    public void RedirectToMainMenu(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("key1", ID_USER);
-        startActivity(intent);
-    }
 }

@@ -115,7 +115,7 @@ public class ListeFournisseur extends AppCompatActivity {
         Sp_fournisseur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListeFournisseur.this,parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show();
+
                 for( Fournisseur oneItem : fourni ) {
                     if(oneItem.nomutilisateur == parent.getItemAtPosition(position).toString()){
                         TV_nom.setText("Nom: "+oneItem.nom);
@@ -144,11 +144,6 @@ public class ListeFournisseur extends AppCompatActivity {
                 "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
                 Toast.LENGTH_SHORT).show();
     }
-    public void RedirectToMainMenu(View view)
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("key1", ID_USER);
-        startActivity(intent);
-    }
+
 
 }

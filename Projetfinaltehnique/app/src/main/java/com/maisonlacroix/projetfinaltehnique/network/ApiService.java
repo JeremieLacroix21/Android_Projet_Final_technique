@@ -4,6 +4,7 @@ import com.maisonlacroix.projetfinaltehnique.Classes.Access_Token;
 import com.maisonlacroix.projetfinaltehnique.Classes.Commande;
 import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
+import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -55,4 +56,7 @@ public interface ApiService {
     Call<ProduitInventaire[]> GetProductsByFournisseur(@Field("id") String id);
 
 
+    @POST("GetUserInformation")
+    @FormUrlEncoded
+    Call<UserInfo> GetUserInformation(@Field("iduser") String id);
 }
