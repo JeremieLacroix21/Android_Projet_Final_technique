@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -19,23 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.maisonlacroix.projetfinaltehnique.network.ApiService;
 import com.maisonlacroix.projetfinaltehnique.network.RetrofitBuilder;
-import com.squareup.picasso.Picasso;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
-import java.io.File;
-import java.util.UUID;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class AjouterProduitActivity extends Activity {
 
@@ -117,32 +103,22 @@ public class AjouterProduitActivity extends Activity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
-            ImagePath = picturePath;
             cursor.close();
 
             ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
 
-
         }
     }
 
-<<<<<<< HEAD
+
     public void AjouterProduit()
     {
-        if(validate()) {
-            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),uniqueId + ".jpg",description.getText().toString(),Tags);
-            //requete de login
-=======
-    public void AjouterProduit(View view)
-    {
-        
         if(validate()) {
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
 
              //requete de login
->>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
             Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -159,47 +135,8 @@ public class AjouterProduitActivity extends Activity {
                     Log.e("ajout produit error : ", t.getMessage());
                 }
             });
-
-<<<<<<< HEAD
-
-
-            //Create a file object using file path
-
-
-
-        }
-    }
-
-=======
-        }
-    }
-
-    /*public void AjouterImage()
-    {
-        //not working
-        Token2.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                if (response.isSuccessful())
-                {
-                    //todo
-                } else {
-                    Log.e("ajout image  error : ", response.errorBody().toString());
-                    if (response.code() == 400) {
-                        Log.e("ajout image error : ", "...");
                     }
-                }
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.e("ajout image error : ", t.getMessage());
-            }
-        });
-
     }
->>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
-
-     */
 
     private boolean validate()
     {
@@ -231,7 +168,6 @@ public class AjouterProduitActivity extends Activity {
         }
         return valid;
     }
-<<<<<<< HEAD
 
     public void RedirectToMainMenu(View view)
     {
@@ -240,6 +176,5 @@ public class AjouterProduitActivity extends Activity {
         startActivity(intent);
     }
 
-=======
->>>>>>> a3d878c77c6c1281fe1c2881111792c9fe54eefb
+
 }
