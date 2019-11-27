@@ -115,6 +115,7 @@
                 android:id="@+id/button_produits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:onClick="ProduitsOnClick"
                 android:text="Produits" />
 
