@@ -78,7 +78,6 @@ public class AjouterProduitActivity extends Activity {
         ID_USER = intent.getStringExtra("key1");
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_AjouterProduit);
-        Picasso.get().load("http://3.15.151.13/expressShop/assets/img/ESLogo2_Black_NoBg_NoText_Reverse_278x155.png").into(imageView);
 
         if (!EasyPermissions.hasPermissions(this, galleryPermissions)) {
             EasyPermissions.requestPermissions(this, "Access for storage", 101, galleryPermissions);
