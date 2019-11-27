@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (TYPE_USER.equals("Fournisseur"))
         {
-            button_Produit.setVisibility(View.GONE);
             button_Commandes.setVisibility(View.GONE);
         }
         else if (TYPE_USER.equals("Distributeur"))

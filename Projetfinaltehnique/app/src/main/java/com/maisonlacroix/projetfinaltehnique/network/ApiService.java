@@ -6,6 +6,8 @@ import com.maisonlacroix.projetfinaltehnique.Classes.ProduitInventaire;
 import com.maisonlacroix.projetfinaltehnique.Classes.User;
 import com.maisonlacroix.projetfinaltehnique.Classes.UserInfo;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -41,7 +43,7 @@ public interface ApiService {
     @Multipart
     @POST("AddImage")
     @FormUrlEncoded
-    Call<String> AddImage(@Part MultipartBody.Part Image,@Part("Nom") RequestBody Nom );
+    Call<String> AddImage(@Part MultipartBody.Part Image, @Part("Nom") RequestBody Nom );
 
 
 
