@@ -125,11 +125,11 @@ public class AjouterProduitActivity extends Activity {
         }
     }
 
-    public void AjouterProduit(View view)
+    public void AjouterProduit()
     {
         
         if(validate()) {
-            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
+            Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER,quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
 
              //requete de login
             Token1.enqueue(new Callback<String>() {
