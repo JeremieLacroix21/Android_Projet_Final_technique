@@ -117,8 +117,6 @@ public class AjouterProduitActivity extends Activity {
     {
         if(validate()) {
             Token1 = service.AddProduct(Nom.getText().toString(), prix.getText().toString(),ID_USER.toString(),quantite.getText().toString(),"android.png",description.getText().toString(),Tags);
-
-             //requete de login
             Token1.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
